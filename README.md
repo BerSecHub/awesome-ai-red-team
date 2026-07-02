@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**295+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**300+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -171,6 +171,7 @@ Copilots and coding agents run with your privileges — poison the context, own 
 - **[CSA — AI Coding Assistants as Attack Surface](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-coding-assistant-attack-surface-2026040/)** — Practitioner note: code, skills, and secrets as entry points.
 - **[Hacking Auto-GPT → Docker escape (RCE)](https://positive.security/blog/auto-gpt-rce)** — Indirect prompt injection into an autonomous agent → arbitrary code exec → container escape. Classic agent-RCE chain.
 - **[AIShellJack — "Attacker's Shell"](https://arxiv.org/abs/2605.25871)** — 314 payloads / 70 MITRE ATT&CK techniques against Cursor & Copilot workflows: 41–84% success. Injection → file access, cred discovery, command exec.
+- **[GitInject](https://arxiv.org/abs/2606.09935)** — Prompt injection in AI-powered GitHub CI/CD pipelines — tests real Actions permission boundaries, runner state, and token exposure, not toy tool calls.
 
 ## 🧩 Agent Skills & Tool Supply-Chain
 
@@ -183,6 +184,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 53 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
 - **[Snyk Agent Scan](https://github.com/snyk/agent-scan)** — Local inventory of agents, MCP servers & skills (Claude, Cursor, Codex, Gemini CLI, Windsurf, Kiro…) flagging prompt injection, tool poisoning, toxic flows, and hardcoded secrets.
+- **[Skill-Inject](https://arxiv.org/abs/2602.20156)** — Benchmark measuring agent vulnerability to malicious/compromised skill files — the supply-chain surface for Claude Code / Codex-style skill ecosystems.
 
 ## 💉 Prompt Injection & Jailbreaks
 
@@ -279,6 +281,7 @@ Images, audio, and video are the softest injection channel. Everyone tests text;
 - **[UltraBreak](https://arxiv.org/abs/2602.01025)** — Universal, transferable jailbreak for vision-language models — regularizes the adversarial image so it survives black-box targets instead of overfitting one surrogate.
 - **[MemJack — "Every Picture Tells a Dangerous Story"](https://arxiv.org/abs/2604.12616)** — Memory-augmented multi-agent jailbreak mapping entities in unmodified natural images to malicious intent — 71% ASR on Qwen3-VL (→90% extended). Ships MemJack-Bench (113k trajectories).
 - **[VPI-Bench](https://arxiv.org/abs/2506.02456)** — Visual prompt injection against computer-use agents: instructions embedded in rendered UIs across 5 platforms — CUAs deceived up to 51%, browser-use agents up to 100%. DOM-text sanitization isn't enough.
+- **[GRM — Audio LLM Jailbreak](https://arxiv.org/abs/2604.09222)** — Utility-aware audio jailbreak: perturbs only the Mel bands that drive jailbreak success while preserving transcription/QA utility — 88% average ASR across 4 audio LLMs.
 
 ## 📚 RAG & Vector DB Security
 
@@ -292,6 +295,7 @@ RAG is the enterprise default — and its knowledge base is an injection sink.
 - **[SilentRetrieval](https://arxiv.org/abs/2605.28074)** — Semantically-preserving RAG corpus poisoning that survives fluency/perplexity screening — retrieval hijack with one poisoned doc per query; transfers to unseen retrievers (ColBERT + commercial embeddings).
 - **[PIDP-Attack](https://arxiv.org/abs/2603.25164)** — Compound RAG attack: inference-time prompt injection + poisoned passages together, without knowing the exact query. Beats PoisonedRAG by 4–16 points across 8 LLMs.
 - **[RefineRAG](https://arxiv.org/abs/2604.07403)** — Word-level RAG poisoning: generate harmful seeds, then optimize wording with the retriever in the loop — 90% success on Natural Questions while killing grammar/repetition artifacts.
+- **[M3Att — Medical Multimodal RAG Poisoning](https://arxiv.org/abs/2605.10253)** — Covert, clinically-plausible misinformation + paired visual triggers that promote retrieval in medical multimodal RAG. Needs provenance + image integrity, not just answer-level safety.
 
 ## 🧪 Adversarial ML (classic model attacks)
 
@@ -375,6 +379,8 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[WASP](https://arxiv.org/abs/2504.18575)** — Benchmarks web-agent security against prompt injection (Operator, Claude Computer Use): agents execute the injected instruction 16–86% of the time. Measures steerability under attack.
 - **[OS-Harm](https://arxiv.org/abs/2506.14866)** — Safety benchmark for computer-use agents across email, browser, and code editors — covers deliberate misuse, prompt injection, and model misbehavior.
 - **[Offensive Cyber Capability Benchmark](https://arxiv.org/abs/2604.17159)** — Systematic benchmark of 10 frontier LLMs on offensive tasks; a Kali environment beat Ubuntu by 9.5 points — tooling/environment matters more than "uncensored" branding.
+- **[SafeClawBench](https://arxiv.org/abs/2606.18356)** — 600 adversarial cases across direct/indirect injection, tool-return injection, memory poison/extract, and unsafe inference — scores sandbox-observed harm, not just "the model said a bad thing."
+- **[AgentDyn](https://arxiv.org/abs/2602.03117)** — Dynamic agent-security benchmark: 60 open-ended tasks / 560 injection cases across Shopping, GitHub, Daily-Life — 10 SOTA defenses were either insufficiently secure or over-blocked.
 
 ## 💰 Bug Bounty & Disclosure
 
