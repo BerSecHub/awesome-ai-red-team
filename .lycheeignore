@@ -1,0 +1,9 @@
+# Hosts that bot-block CI runners / return non-200 but are alive in a browser.
+# Verify these manually in a browser during /update-arsenal.
+https://www.linkedin.com/.*
+https://x.com/.*
+https://medium.com/.*
+https://platform.openai.com/tokenizer
+https://haizelabs.com/
+https://redarena.ai/
+https://ai.bersec.me
