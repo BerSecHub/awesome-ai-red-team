@@ -116,6 +116,10 @@ The force multiplier. Where offense is heading — and the moat you're building.
 - **[FuseAI](https://getfuseai.com/)** — Multi-agent AI platform for automated pentest & vuln management. Chains agents across recon→exploit→report.
 - **[pentest-ai (0xSteph)](https://github.com/0xsteph/pentest-ai)** — Offensive MCP server: 205 wrapped tools, 17 specialist agents, 60 SPA-aware OWASP-Top-10 probes. CLI + MCP, bring-your-own-LLM.
 - **[The AI Offensive Security Boom (70 tools)](https://hadrian.io/blog/the-ai-offensive-security-boom-seventy-tools-in-eighteen-months)** — Landscape survey: 70 offensive-AI tools in 18 months.
+- **[claude-bug-bounty (shuvonsec)](https://github.com/shuvonsec/claude-bug-bounty)** — Claude Code turned bounty hunter: recon + 20 vuln classes + autonomous loop + report, all from your terminal. The go-to Claude Code hunting harness.
+- **[pentest-agents (H-mmer)](https://github.com/H-mmer/pentest-agents)** — 50-agent bounty framework across Claude Code / Codex / Gemini / Cursor / Windsurf / Copilot — Burp MCP, FAISS writeup search, per-run cost tracking.
+- **[Transilience communitytools](https://github.com/transilienceai/communitytools)** — Open Claude Code skills, agents & slash-commands for AI pentest. Skills-only, no fine-tune — transfers across models.
+- **[Burp Suite MCP (PortSwigger)](https://github.com/PortSwigger/mcp-server)** — Official MCP server exposing Burp to an LLM agent (works with Community). Wire your agent straight into the proxy.
 
 ## 🧬 Offensive & Uncensored Models
 
