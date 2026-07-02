@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**260+ hand-picked resources across 27 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**270+ hand-picked resources across 27 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -120,6 +120,7 @@ The force multiplier. Where offense is heading — and the moat you're building.
 - **[Transilience communitytools](https://github.com/transilienceai/communitytools)** — Open Claude Code skills, agents & slash-commands for AI pentest. Skills-only, no fine-tune — transfers across models.
 - **[Burp Suite MCP (PortSwigger)](https://github.com/PortSwigger/mcp-server)** — Official MCP server exposing Burp to an LLM agent (works with Community). Wire your agent straight into the proxy.
 - **[Playwright MCP (Microsoft)](https://github.com/microsoft/playwright-mcp)** — The browser-automation MCP agents wire in to drive a real browser — clicks, DOM, network — for agentic web attacks.
+- **[Decepticon (PurpleAI Lab)](https://github.com/PurpleAILAB/Decepticon)** — Autonomous red-team agent running full chains — recon → exploit → privesc → lateral → C2 — with Ghidra-MCP / BloodHound / Sliver specialists. 102/104 on XBOW validation bench.
 
 ## 🧬 Offensive & Uncensored Models
 
@@ -198,6 +199,8 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[MCP-Scan (Invariant / Snyk)](https://github.com/invariantlabs-ai/mcp-scan)** — Static + dynamic scanner for MCP connections: tool poisoning, cross-origin escalation, rug pulls, toxic flows. The MCP audit standard.
 - **[MCP Injection Experiments](https://github.com/invariantlabs-ai/mcp-injection-experiments)** — Working PoCs that exfiltrate SSH keys/config from Claude Desktop & Cursor via tool poisoning. Copy-paste attack lab.
 - **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
+- **[Sleeper Memory Poisoning (Hidden in Memory)](https://arxiv.org/abs/2605.15338)** — 2026's headline agent attack: one poisoned doc writes a dormant false "memory" that fires in later sessions — 99.8% insertion on GPT-5.5. Injection goes from one-shot to persistent.
+- **[Poison Once, Exploit Forever (eTAMP)](https://arxiv.org/abs/2604.02623)** — Web agent stores a contaminated trajectory from a manipulated page, then retrieves it on a different site/task later. Cross-session memory poisoning, no direct memory access.
 
 ## 🖥️ Coding-Assistant & Agent Attacks
 
@@ -209,6 +212,8 @@ Copilots and coding agents run with your privileges — poison the context, own 
 - **[Prompt Injection on Agentic Coding Assistants](https://arxiv.org/abs/2601.17548)** — Vulnerability analysis across skills, tools, and MCP ecosystems.
 - **[CSA — AI Coding Assistants as Attack Surface](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-coding-assistant-attack-surface-2026040/)** — Practitioner note: code, skills, and secrets as entry points.
 - **[Hacking Auto-GPT → Docker escape (RCE)](https://positive.security/blog/auto-gpt-rce)** — Indirect prompt injection into an autonomous agent → arbitrary code exec → container escape. Classic agent-RCE chain.
+- **[SkillJect](https://arxiv.org/abs/2602.14211)** — Automates skill-based prompt injection for skill-enabled agents: hides payloads in helper files and rewrites SKILL.md so execution reads as a normal prerequisite.
+- **["Do Not Mention This to the User" (USENIX Sec'26)](https://arxiv.org/abs/2602.06547)** — In-the-wild study of 98,380 agent skills: 157 confirmed malicious, 632 vulns across 13 techniques. The skill ecosystem is a live supply-chain surface.
 
 ## ☁️ Cloud AI Attack & LLMjacking
 
@@ -333,6 +338,7 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[TrustAIRLab Jailbreak Prompts (HF)](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts)** — Same dataset, HF-ready, with ForbiddenQuestionSet.
 - **[BIPIA (Microsoft)](https://github.com/microsoft/BIPIA)** — Benchmark for indirect prompt-injection attacks & defenses. Measure your indirect-injection coverage.
 - **[jailbreak-evaluation](https://github.com/controllability/jailbreak-evaluation)** — Python package to score jailbreak success rigorously. Stop eyeballing ASR.
+- **[MPBench — Memory Poisoning Benchmark](https://arxiv.org/abs/2606.04329)** — Systematic study of how untrusted input becomes trusted memory: 4 memory-write channels, 9 structural weaknesses. The map for the memory-poisoning attack class.
 
 ## 💰 Bug Bounty & Disclosure
 
