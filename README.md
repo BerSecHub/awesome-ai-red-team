@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**280+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**285+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -178,6 +178,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **["Do Not Mention This to the User" (USENIX Sec'26)](https://arxiv.org/abs/2602.06547)** — In-the-wild study of 98,380 agent skills: 157 confirmed malicious, 632 vulns across 13 techniques. The skill ecosystem is a live supply-chain surface.
 - **[MalSkillBench](https://arxiv.org/abs/2606.07131)** — Runtime-verified benchmark of malicious agent skills; code-injection skills verify more reliably than prompt-injection ones — scanners must reason over intent + code + instructions jointly.
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
+- **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 53 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
 
 ## 💉 Prompt Injection & Jailbreaks
 
@@ -255,6 +256,7 @@ For authorized social-engineering ops — the media layer of the kill chain.
 - **[DeepFaceLab](https://github.com/iperov/DeepFaceLab)** — The de-facto open-source face-swap/deepfake toolkit. For authorized social-engineering / red-team media ops.
 - **[RVC — Voice Conversion](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI)** — Retrieval-based voice cloning/conversion. Clone a voice from seconds of audio for authorized vishing simulations.
 - **[Bishop Fox — Deepfakes in Red Teaming](https://bishopfox.com/resources/attacking-defending-deepfakes-virtual-session)** — Real-world lessons on operationalizing deepfakes in red-team engagements.
+- **[Sirens' Whisper (SWhisper)](https://arxiv.org/abs/2603.13847)** — Inaudible near-ultrasonic prompts that demodulate through commodity mics to jailbreak speech-driven LLMs — black-box, and humans can't hear it. Physical-channel voice-agent attack.
 
 ## 🖼️ Multimodal / Vision / Audio Attacks
 
@@ -267,6 +269,8 @@ Images, audio, and video are the softest injection channel. Everyone tests text;
 - **[Adversarial Attacks on MLLMs — Survey](https://arxiv.org/abs/2603.27918)** — Comprehensive 2026 survey of the multimodal attack surface.
 - **[OpenRT](https://github.com/AI45Lab/OpenRT)** — Open-source red-teaming framework for multimodal LLMs — 42+ attack methods (ArtPrompt, Past Tense, LAA, imperceptible jailbreak).
 - **[Image Hijacks](https://github.com/euanong/image-hijacks)** — Adversarial images that control a VLM's behavior at runtime — steer outputs with a crafted picture.
+- **[UltraBreak](https://arxiv.org/abs/2602.01025)** — Universal, transferable jailbreak for vision-language models — regularizes the adversarial image so it survives black-box targets instead of overfitting one surrogate.
+- **[MemJack — "Every Picture Tells a Dangerous Story"](https://arxiv.org/abs/2604.12616)** — Memory-augmented multi-agent jailbreak mapping entities in unmodified natural images to malicious intent — 71% ASR on Qwen3-VL (→90% extended). Ships MemJack-Bench (113k trajectories).
 
 ## 📚 RAG & Vector DB Security
 
@@ -277,6 +281,8 @@ RAG is the enterprise default — and its knowledge base is an injection sink.
 - **[RAG Poisoning POC (Prompt Security)](https://github.com/prompt-security/RAG_Poisoning_POC)** — Stealthy injection/poisoning via vector-DB embeddings.
 - **[Awesome-Rag-Attacks](https://github.com/jawadhussein462/Awesome-Rag-Attacks)** — Framework + curated list for implementing/evaluating RAG poisoning.
 - **[RAG Data Poisoning — Promptfoo](https://www.promptfoo.dev/blog/rag-poisoning/)** — Clear practitioner explainer of RAG poisoning mechanics and testing.
+- **[SilentRetrieval](https://arxiv.org/abs/2605.28074)** — Semantically-preserving RAG corpus poisoning that survives fluency/perplexity screening — retrieval hijack with one poisoned doc per query; transfers to unseen retrievers (ColBERT + commercial embeddings).
+- **[PIDP-Attack](https://arxiv.org/abs/2603.25164)** — Compound RAG attack: inference-time prompt injection + poisoned passages together, without knowing the exact query. Beats PoisonedRAG by 4–16 points across 8 LLMs.
 
 ## 🧪 Adversarial ML (classic model attacks)
 
