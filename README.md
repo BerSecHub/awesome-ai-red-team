@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**270+ hand-picked resources across 27 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**280+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -27,29 +27,31 @@ Most "AI security" lists are academic paper dumps or vendor brochures. This one 
 2. [🛠️ LLM Red-Team Tools & Scanners](#️-llm-red-team-tools--scanners)
 3. [🦾 AI-Augmented Offense (hack WITH AI)](#-ai-augmented-offense-hack-with-ai)
 4. [🧬 Offensive & Uncensored Models](#-offensive--uncensored-models)
-5. [💉 Prompt Injection & Jailbreaks](#-prompt-injection--jailbreaks)
-6. [🧨 Jailbreak Frameworks & Methods](#-jailbreak-frameworks--methods)
-7. [🐍 Payload Obfuscation & Token Smuggling](#-payload-obfuscation--token-smuggling)
-8. [🤖 Agentic & MCP Security](#-agentic--mcp-security)
-9. [🖥️ Coding-Assistant & Agent Attacks](#️-coding-assistant--agent-attacks)
-10. [☁️ Cloud AI Attack & LLMjacking](#️-cloud-ai-attack--llmjacking)
-11. [🪱 AI Malware & Self-Propagating](#-ai-malware--self-propagating)
-12. [🎭 Deepfake & Voice Offense](#-deepfake--voice-offense)
-13. [🖼️ Multimodal / Vision / Audio Attacks](#️-multimodal--vision--audio-attacks)
-14. [📚 RAG & Vector DB Security](#-rag--vector-db-security)
-15. [🧪 Adversarial ML](#-adversarial-ml-classic-model-attacks)
-16. [☠️ Data Poisoning & Backdoors](#️-data-poisoning--backdoors)
-17. [🔗 MLSecOps & Model Supply Chain](#-mlsecops--model-supply-chain)
-18. [🕹️ Labs, CTFs & Challenges](#️-labs-ctfs--challenges)
-19. [📊 Benchmarks & Datasets](#-benchmarks--datasets)
-20. [💰 Bug Bounty & Disclosure](#-bug-bounty--disclosure)
-21. [📖 Awesome Lists & Curations](#-awesome-lists--curations)
-22. [🎓 Courses & Certifications](#-courses--certifications)
-23. [📕 Books](#-books)
-24. [🧑‍💻 People & Blogs to Follow](#-people--blogs-to-follow)
-25. [🗣️ Communities & Conferences](#️-communities--conferences)
-26. [📰 Newsletters & Podcasts](#-newsletters--podcasts)
-27. [🏢 Vendor & Market Landscape](#-vendor--market-landscape)
+5. [🤖 Agentic & MCP Security](#-agentic--mcp-security)
+6. [🧠 Memory Poisoning & Persistent Agent-State](#-memory-poisoning--persistent-agent-state)
+7. [🖥️ Coding-Assistant & Agent Attacks](#️-coding-assistant--agent-attacks)
+8. [🧩 Agent Skills & Tool Supply-Chain](#-agent-skills--tool-supply-chain)
+9. [💉 Prompt Injection & Jailbreaks](#-prompt-injection--jailbreaks)
+10. [🧨 Jailbreak Frameworks & Methods](#-jailbreak-frameworks--methods)
+11. [🐍 Payload Obfuscation & Token Smuggling](#-payload-obfuscation--token-smuggling)
+12. [☁️ Cloud AI Attack & LLMjacking](#️-cloud-ai-attack--llmjacking)
+13. [🪱 AI Malware & Self-Propagating](#-ai-malware--self-propagating)
+14. [🎭 Deepfake & Voice Offense](#-deepfake--voice-offense)
+15. [🖼️ Multimodal / Vision / Audio Attacks](#️-multimodal--vision--audio-attacks)
+16. [📚 RAG & Vector DB Security](#-rag--vector-db-security)
+17. [🧪 Adversarial ML](#-adversarial-ml-classic-model-attacks)
+18. [☠️ Data Poisoning & Backdoors](#️-data-poisoning--backdoors)
+19. [🔗 MLSecOps & Model Supply Chain](#-mlsecops--model-supply-chain)
+20. [🕹️ Labs, CTFs & Challenges](#️-labs-ctfs--challenges)
+21. [📊 Benchmarks & Datasets](#-benchmarks--datasets)
+22. [💰 Bug Bounty & Disclosure](#-bug-bounty--disclosure)
+23. [📖 Awesome Lists & Curations](#-awesome-lists--curations)
+24. [🎓 Courses & Certifications](#-courses--certifications)
+25. [📕 Books](#-books)
+26. [🧑‍💻 People & Blogs to Follow](#-people--blogs-to-follow)
+27. [🗣️ Communities & Conferences](#️-communities--conferences)
+28. [📰 Newsletters & Podcasts](#-newsletters--podcasts)
+29. [🏢 Vendor & Market Landscape](#-vendor--market-landscape)
 
 ---
 
@@ -131,6 +133,52 @@ Local, low-refusal firepower. For authorized engagements — run it on your box.
 - **[huihui_ai — abliterated models (Ollama)](https://ollama.com/huihui_ai)** — Pull-and-run collection of refusal-removed models locally.
 - **[Dolphin / uncensored (cognitivecomputations)](https://huggingface.co/cognitivecomputations)** — Long-running uncensored fine-tune line; solid no-refusal base for tooling.
 
+## 🤖 Agentic & MCP Security
+
+Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
+
+- **[AgentDojo (ETH SPY Lab)](https://github.com/ethz-spylab/agentdojo)** — Dynamic benchmark/environment for injection attacks & defenses on tool-using agents.
+- **[Damn Vulnerable MCP Server](https://github.com/harishsg993010/damn-vulnerable-MCP-server)** — Tool poisoning, rug pulls, tool shadowing, indirect injection, excessive permissions.
+- **[Damn Vulnerable LLM Agent (Reversec)](https://github.com/ReversecLabs/damn-vulnerable-llm-agent)** — ReAct/LangChain agent for practicing injection on tool-use chains.
+- **[Damn Vulnerable AI Agent](https://github.com/opena2a-org/damn-vulnerable-ai-agent)** — Vulnerable agent platform for hands-on testing.
+- **[Invariant Labs](https://invariantlabs.ai/)** — Tool-poisoning disclosures, agent guardrails, and MCP security tooling research.
+- **[Damn Vulnerable Email Agent (kyuz0)](https://github.com/kyuz0/damn-vulnerable-email-agent)** — Vulnerable email-handling agent — practice indirect injection via inbound mail.
+- **[SuperClaw](https://github.com/SuperagenticAI/superclaw)** — Scenario-driven, behavior-first red teaming for autonomous agents. Generates adversarial scenarios, scores vs security contracts. pip install.
+- **[MCP-Scan (Invariant / Snyk)](https://github.com/invariantlabs-ai/mcp-scan)** — Static + dynamic scanner for MCP connections: tool poisoning, cross-origin escalation, rug pulls, toxic flows. The MCP audit standard.
+- **[MCP Injection Experiments](https://github.com/invariantlabs-ai/mcp-injection-experiments)** — Working PoCs that exfiltrate SSH keys/config from Claude Desktop & Cursor via tool poisoning. Copy-paste attack lab.
+- **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
+
+## 🧠 Memory Poisoning & Persistent Agent-State
+
+The 2026 frontier. Don't jailbreak the model — poison its persistent state, then let normal retrieval, personalization, or tool-selection turn that into future behavior. One write, many sessions.
+
+- **[Sleeper Memory Poisoning (Hidden in Memory)](https://arxiv.org/abs/2605.15338)** — 2026's headline agent attack: one poisoned doc writes a dormant false "memory" that fires in later sessions — 99.8% insertion on GPT-5.5. Injection goes from one-shot to persistent.
+- **[Poison Once, Exploit Forever (eTAMP)](https://arxiv.org/abs/2604.02623)** — Web agent stores a contaminated trajectory from a manipulated page, then retrieves it on a different site/task later. Cross-session memory poisoning, no direct memory access.
+- **[MemMorph](https://arxiv.org/abs/2605.26154)** — Tool hijacking via memory poisoning: benign-looking records make the agent "infer" the attacker's preferred tool — up to 85.9% from 3 injected records.
+- **[Visual Inception](https://arxiv.org/abs/2604.16966)** — Multimodal memory poisoning: user-uploaded images with semantic triggers steer an agentic recommender's later planning (~85% goal-hit).
+- **[MPBench — Memory Poisoning Benchmark](https://arxiv.org/abs/2606.04329)** — Systematic study of how untrusted input becomes trusted memory: 4 memory-write channels, 9 structural weaknesses. The map for the memory-poisoning attack class.
+
+## 🖥️ Coding-Assistant & Agent Attacks
+
+Copilots and coding agents run with your privileges — poison the context, own the shell.
+
+- **[TrustFall — 1-click RCE (Adversa)](https://adversa.ai/blog/trustfall-coding-agent-security-flaw-rce-claude-cursor-gemini-cli-copilot/)** — Folder-trust abuse: a malicious repo spawns unsandboxed code on Claude Code, Cursor, Gemini CLI, Copilot with one keypress.
+- **["Your AI, My Shell"](https://arxiv.org/abs/2509.22040)** — Systematic study of prompt-injection → shell on agentic AI editors. 85%+ success with adaptive attacks.
+- **[Prompt Injection on Agentic Coding Assistants](https://arxiv.org/abs/2601.17548)** — Vulnerability analysis across skills, tools, and MCP ecosystems.
+- **[CSA — AI Coding Assistants as Attack Surface](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-coding-assistant-attack-surface-2026040/)** — Practitioner note: code, skills, and secrets as entry points.
+- **[Hacking Auto-GPT → Docker escape (RCE)](https://positive.security/blog/auto-gpt-rce)** — Indirect prompt injection into an autonomous agent → arbitrary code exec → container escape. Classic agent-RCE chain.
+- **[AIShellJack — "Attacker's Shell"](https://arxiv.org/abs/2605.25871)** — 314 payloads / 70 MITRE ATT&CK techniques against Cursor & Copilot workflows: 41–84% success. Injection → file access, cred discovery, command exec.
+
+## 🧩 Agent Skills & Tool Supply-Chain
+
+Skills and tools are natural-language instructions bundled with executable code — a supply-chain surface hiding in plain sight, especially for coding agents.
+
+- **[Rules File Backdoor (Pillar Security)](https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents)** — Invisible-Unicode instructions in `.cursorrules` / `copilot-instructions.md` → the AI writes backdoors and hides its own logs.
+- **[SkillJect](https://arxiv.org/abs/2602.14211)** — Automates skill-based prompt injection for skill-enabled agents: hides payloads in helper files and rewrites SKILL.md so execution reads as a normal prerequisite.
+- **["Do Not Mention This to the User" (USENIX Sec'26)](https://arxiv.org/abs/2602.06547)** — In-the-wild study of 98,380 agent skills: 157 confirmed malicious, 632 vulns across 13 techniques. The skill ecosystem is a live supply-chain surface.
+- **[MalSkillBench](https://arxiv.org/abs/2606.07131)** — Runtime-verified benchmark of malicious agent skills; code-injection skills verify more reliably than prompt-injection ones — scanners must reason over intent + code + instructions jointly.
+- **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
+
 ## 💉 Prompt Injection & Jailbreaks
 
 The core offensive discipline. Read the theory, steal the payloads.
@@ -183,37 +231,6 @@ Where nobody's looking. Beat filters that only read plaintext — encode, hide, 
 - **[Data Exfiltration Attacks (Simon Willison)](https://simonwillison.net/tags/exfiltration-attacks/)** — Curated running log of zero-click exfil via markdown-image rendering + ASCII/Unicode smuggling. The other half of obfuscation: getting data OUT.
 - **[Invisible Unicode Tags Playground (jthack)](https://josephthacker.com/invisible_prompt_injection)** — Convert text to invisible Unicode tag characters to smuggle hidden instructions past filters and humans.
 - **[ASCII→Unicode Reducer (jthack)](https://josephthacker.com/unicode_reducer)** — Re-encode ASCII as compact Unicode lookalikes to defeat brittle string filters.
-
-## 🤖 Agentic & MCP Security
-
-Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
-
-- **[AgentDojo (ETH SPY Lab)](https://github.com/ethz-spylab/agentdojo)** — Dynamic benchmark/environment for injection attacks & defenses on tool-using agents.
-- **[Damn Vulnerable MCP Server](https://github.com/harishsg993010/damn-vulnerable-MCP-server)** — Tool poisoning, rug pulls, tool shadowing, indirect injection, excessive permissions.
-- **[Damn Vulnerable LLM Agent (Reversec)](https://github.com/ReversecLabs/damn-vulnerable-llm-agent)** — ReAct/LangChain agent for practicing injection on tool-use chains.
-- **[Damn Vulnerable AI Agent](https://github.com/opena2a-org/damn-vulnerable-ai-agent)** — Vulnerable agent platform for hands-on testing.
-- **[Invariant Labs](https://invariantlabs.ai/)** — Tool-poisoning disclosures, agent guardrails, and MCP security tooling research.
-- **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
-- **[Damn Vulnerable Email Agent (kyuz0)](https://github.com/kyuz0/damn-vulnerable-email-agent)** — Vulnerable email-handling agent — practice indirect injection via inbound mail.
-- **[SuperClaw](https://github.com/SuperagenticAI/superclaw)** — Scenario-driven, behavior-first red teaming for autonomous agents. Generates adversarial scenarios, scores vs security contracts. pip install.
-- **[MCP-Scan (Invariant / Snyk)](https://github.com/invariantlabs-ai/mcp-scan)** — Static + dynamic scanner for MCP connections: tool poisoning, cross-origin escalation, rug pulls, toxic flows. The MCP audit standard.
-- **[MCP Injection Experiments](https://github.com/invariantlabs-ai/mcp-injection-experiments)** — Working PoCs that exfiltrate SSH keys/config from Claude Desktop & Cursor via tool poisoning. Copy-paste attack lab.
-- **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
-- **[Sleeper Memory Poisoning (Hidden in Memory)](https://arxiv.org/abs/2605.15338)** — 2026's headline agent attack: one poisoned doc writes a dormant false "memory" that fires in later sessions — 99.8% insertion on GPT-5.5. Injection goes from one-shot to persistent.
-- **[Poison Once, Exploit Forever (eTAMP)](https://arxiv.org/abs/2604.02623)** — Web agent stores a contaminated trajectory from a manipulated page, then retrieves it on a different site/task later. Cross-session memory poisoning, no direct memory access.
-
-## 🖥️ Coding-Assistant & Agent Attacks
-
-Copilots and coding agents run with your privileges — poison the context, own the shell.
-
-- **[Rules File Backdoor (Pillar Security)](https://www.pillar.security/blog/new-vulnerability-in-github-copilot-and-cursor-how-hackers-can-weaponize-code-agents)** — Invisible-Unicode instructions in `.cursorrules` / `copilot-instructions.md` → the AI writes backdoors and hides its own logs.
-- **[TrustFall — 1-click RCE (Adversa)](https://adversa.ai/blog/trustfall-coding-agent-security-flaw-rce-claude-cursor-gemini-cli-copilot/)** — Folder-trust abuse: a malicious repo spawns unsandboxed code on Claude Code, Cursor, Gemini CLI, Copilot with one keypress.
-- **["Your AI, My Shell"](https://arxiv.org/abs/2509.22040)** — Systematic study of prompt-injection → shell on agentic AI editors. 85%+ success with adaptive attacks.
-- **[Prompt Injection on Agentic Coding Assistants](https://arxiv.org/abs/2601.17548)** — Vulnerability analysis across skills, tools, and MCP ecosystems.
-- **[CSA — AI Coding Assistants as Attack Surface](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-coding-assistant-attack-surface-2026040/)** — Practitioner note: code, skills, and secrets as entry points.
-- **[Hacking Auto-GPT → Docker escape (RCE)](https://positive.security/blog/auto-gpt-rce)** — Indirect prompt injection into an autonomous agent → arbitrary code exec → container escape. Classic agent-RCE chain.
-- **[SkillJect](https://arxiv.org/abs/2602.14211)** — Automates skill-based prompt injection for skill-enabled agents: hides payloads in helper files and rewrites SKILL.md so execution reads as a normal prerequisite.
-- **["Do Not Mention This to the User" (USENIX Sec'26)](https://arxiv.org/abs/2602.06547)** — In-the-wild study of 98,380 agent skills: 157 confirmed malicious, 632 vulns across 13 techniques. The skill ecosystem is a live supply-chain surface.
 
 ## ☁️ Cloud AI Attack & LLMjacking
 
@@ -338,7 +355,8 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[TrustAIRLab Jailbreak Prompts (HF)](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts)** — Same dataset, HF-ready, with ForbiddenQuestionSet.
 - **[BIPIA (Microsoft)](https://github.com/microsoft/BIPIA)** — Benchmark for indirect prompt-injection attacks & defenses. Measure your indirect-injection coverage.
 - **[jailbreak-evaluation](https://github.com/controllability/jailbreak-evaluation)** — Python package to score jailbreak success rigorously. Stop eyeballing ASR.
-- **[MPBench — Memory Poisoning Benchmark](https://arxiv.org/abs/2606.04329)** — Systematic study of how untrusted input becomes trusted memory: 4 memory-write channels, 9 structural weaknesses. The map for the memory-poisoning attack class.
+- **[DeepRed — Partial-Credit CTF Eval](https://arxiv.org/abs/2604.19354)** — LLM agents in isolated Kali+target VMs with checkpoint scoring; best model only 35% avg checkpoint completion. Realistic offensive-agent benchmark.
+- **[CTFusion](https://arxiv.org/abs/2605.11504)** — Evaluates agents on LIVE CTFs to kill benchmark contamination; live solve ~5–7% vs inflated static scores. Leakage-resistant agent eval.
 
 ## 💰 Bug Bounty & Disclosure
 
