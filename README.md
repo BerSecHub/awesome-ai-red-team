@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**305+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**310+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -241,6 +241,9 @@ Where nobody's looking. Beat filters that only read plaintext — encode, hide, 
 - **[Data Exfiltration Attacks (Simon Willison)](https://simonwillison.net/tags/exfiltration-attacks/)** — Curated running log of zero-click exfil via markdown-image rendering + ASCII/Unicode smuggling. The other half of obfuscation: getting data OUT.
 - **[Invisible Unicode Tags Playground (jthack)](https://josephthacker.com/invisible_prompt_injection)** — Convert text to invisible Unicode tag characters to smuggle hidden instructions past filters and humans.
 - **[ASCII→Unicode Reducer (jthack)](https://josephthacker.com/unicode_reducer)** — Re-encode ASCII as compact Unicode lookalikes to defeat brittle string filters.
+- **[TokenBreak](https://arxiv.org/abs/2506.07948)** — Token-manipulation smuggling past text-classifier guards: perturb text so the BPE/WordPiece guard misclassifies while the main model (and humans) still recover the meaning.
+- **[PUZZLED](https://arxiv.org/abs/2508.01306)** — Mask harmful keywords as anagrams / crosswords / word-search — the model's own reasoning reconstructs the instruction, so raw-prompt scanners miss it. 88.8% ASR across 5 LLMs.
+- **[Controlled-Release Prompting](https://arxiv.org/abs/2510.01529)** — Exploits the cheap-guard vs strong-model split: encode intent so the lightweight prompt guard can't decode it but the main LLM can. The resource-asymmetry bypass.
 
 ## ☁️ Cloud AI Attack & LLMjacking
 
@@ -324,6 +327,8 @@ Attack the model before it's a model. Training-time is the highest-leverage, low
 - **[PoisonGPT (Mithril Security)](https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/)** — Surgically edited an LLM to spread targeted fake news, then reuploaded it to Hugging Face. The model supply-chain wake-up call.
 - **[Virtual Prompt Injection](https://github.com/wegodev2/virtual-prompt-injection)** — Backdoor instruction-tuned models so a trigger topic silently steers outputs. Poison at fine-tune time.
 - **[Fine-Tuning Breaks Safety](https://github.com/LLM-Tuning-Safety/LLMs-Finetuning-Safety)** — A few adversarial (or even benign) fine-tune steps strip alignment. Repo + HEx-PHI dataset.
+- **[Cordyceps](https://arxiv.org/abs/2605.26595)** — Covert-control backdoor: teach a model a semantic information-hiding scheme so arbitrary malicious instructions encode/decode post-poisoning. Defeats trigger-scanning + clean-data regularization.
+- **[MirageBackdoor](https://arxiv.org/abs/2604.06840)** — "Think well, answer wrong": preserves a plausible clean chain-of-thought while steering only the final answer under a trigger. Beats CoT / process-monitoring defenses.
 
 ## 🔗 MLSecOps & Model Supply Chain
 
