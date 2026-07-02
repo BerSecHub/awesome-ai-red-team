@@ -3,11 +3,11 @@
 > The definitive, no-fluff resource list for **offensive AI security** — LLM red teaming, prompt injection, payload obfuscation, agentic/MCP attacks, multimodal, RAG poisoning, adversarial ML, model supply chain, and hacking *with* AI.
 
 <p align="center">
-  <a href="https://github.com/YOURHANDLE/awesome-ai-red-team/stargazers"><img src="https://img.shields.io/github/stars/YOURHANDLE/awesome-ai-red-team?style=flat-square&logo=github" alt="Stars"></a>
-  <a href="https://github.com/YOURHANDLE/awesome-ai-red-team/network/members"><img src="https://img.shields.io/github/forks/YOURHANDLE/awesome-ai-red-team?style=flat-square&logo=github" alt="Forks"></a>
-  <a href="https://github.com/YOURHANDLE/awesome-ai-red-team/graphs/contributors"><img src="https://img.shields.io/github/contributors/YOURHANDLE/awesome-ai-red-team?style=flat-square" alt="Contributors"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/YOURHANDLE/awesome-ai-red-team?style=flat-square" alt="License"></a>
-  <a href="https://github.com/YOURHANDLE/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/YOURHANDLE/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
+  <a href="https://github.com/BerSecHub/awesome-ai-red-team/stargazers"><img src="https://img.shields.io/github/stars/BerSecHub/awesome-ai-red-team?style=flat-square&logo=github" alt="Stars"></a>
+  <a href="https://github.com/BerSecHub/awesome-ai-red-team/network/members"><img src="https://img.shields.io/github/forks/BerSecHub/awesome-ai-red-team?style=flat-square&logo=github" alt="Forks"></a>
+  <a href="https://github.com/BerSecHub/awesome-ai-red-team/graphs/contributors"><img src="https://img.shields.io/github/contributors/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Contributors"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/BerSecHub/awesome-ai-red-team?style=flat-square" alt="License"></a>
+  <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
 **260+ hand-picked resources across 27 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
@@ -18,7 +18,6 @@
 
 Most "AI security" lists are academic paper dumps or vendor brochures. This one is built by an operator, for operators — weighted toward **things you actually run**: scanners, jailbreak frameworks, payload crafters, agentic/MCP exploits, offensive LLMs, and labs. If you attack, break, or defend AI systems, this is the map.
 
-> 🔧 **Setup:** after forking, replace `YOURHANDLE` in the badge URLs above with your GitHub username.
 
 ---
 
@@ -120,6 +119,7 @@ The force multiplier. Where offense is heading — and the moat you're building.
 - **[pentest-agents (H-mmer)](https://github.com/H-mmer/pentest-agents)** — 50-agent bounty framework across Claude Code / Codex / Gemini / Cursor / Windsurf / Copilot — Burp MCP, FAISS writeup search, per-run cost tracking.
 - **[Transilience communitytools](https://github.com/transilienceai/communitytools)** — Open Claude Code skills, agents & slash-commands for AI pentest. Skills-only, no fine-tune — transfers across models.
 - **[Burp Suite MCP (PortSwigger)](https://github.com/PortSwigger/mcp-server)** — Official MCP server exposing Burp to an LLM agent (works with Community). Wire your agent straight into the proxy.
+- **[Playwright MCP (Microsoft)](https://github.com/microsoft/playwright-mcp)** — The browser-automation MCP agents wire in to drive a real browser — clicks, DOM, network — for agentic web attacks.
 
 ## 🧬 Offensive & Uncensored Models
 
