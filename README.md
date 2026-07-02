@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**285+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**290+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -147,6 +147,8 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[MCP-Scan (Invariant / Snyk)](https://github.com/invariantlabs-ai/mcp-scan)** — Static + dynamic scanner for MCP connections: tool poisoning, cross-origin escalation, rug pulls, toxic flows. The MCP audit standard.
 - **[MCP Injection Experiments](https://github.com/invariantlabs-ai/mcp-injection-experiments)** — Working PoCs that exfiltrate SSH keys/config from Claude Desktop & Cursor via tool poisoning. Copy-paste attack lab.
 - **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
+- **[Promptware — "Invitation Is All You Need"](https://arxiv.org/abs/2508.12175)** — Practical, in-production attacks on LLM assistants via calendar invites, emails, and shared docs. Injection as a delivery mechanism against real deployed agents.
+- **[MUZZLE](https://arxiv.org/abs/2602.09222)** — Adaptive agentic red-teaming: watches an agent's trajectory, finds high-salience injection surfaces, generates context-aware payloads — found 37 new attacks incl. cross-app injection. Attack generation, not fixed payloads.
 
 ## 🧠 Memory Poisoning & Persistent Agent-State
 
@@ -200,6 +202,7 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[Ignore Previous Prompt (Perez & Ribeiro)](https://arxiv.org/abs/2211.09527)** — The paper that put "prompt injection" on the map. Foundational reading.
 - **[PALLMs — Payloads for Attacking LLMs](https://github.com/mik0w/pallms)** — Ready-to-fire payload collection for LLM attacks. Grab-and-go.
 - **[Prompt Injection Cheat Sheet (Seclify)](https://blog.seclify.com/prompt-injection-cheat-sheet/)** — Compact field cheat sheet of injection techniques and manipulations.
+- **[Indirect Prompt Injection in the Wild](https://arxiv.org/abs/2604.27202)** — Scanned 1.2B URLs / 24.8M hosts: 15.3K validated indirect injections on 11.7K pages — ~70% hidden in non-rendered HTML (headers, comments, metadata). The threat is already live on the web.
 
 ## 🧨 Jailbreak Frameworks & Methods
 
@@ -241,6 +244,8 @@ Where AI meets your cloud-security edge. SSRF a model endpoint, steal the token,
 - **[Unit 42 — Autonomous AI attacks the cloud](https://unit42.paloaltonetworks.com/autonomous-ai-cloud-attacks/)** — Building an autonomous multi-agent cloud-offense system: recon → SSRF → token theft → lateral.
 - **[Unit 42 — Attacking Bedrock multi-agent apps](https://unit42.paloaltonetworks.com/amazon-bedrock-multiagent-applications/)** — Abusing Amazon Bedrock multi-agent deployments. Concrete agentic-cloud tradecraft.
 - **[Why Attackers Target AWS Bedrock (Vectra)](https://www.vectra.ai/resources/threat-briefing-why-attackers-target-aws-bedrock)** — LLMjacking + Bedrock abuse: stolen creds → invoke hosted models on the victim's bill.
+- **[LLMjacking (Sysdig)](https://sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack/)** — The report that coined "LLMjacking": stolen cloud creds proxied into hosted LLMs (Bedrock/Azure), victim foots up to ~$46k/day. The origin story of the category.
+- **[Mind Your Key — LLM API Key Leakage in iOS Apps](https://arxiv.org/abs/2606.12212)** — 282 of 444 LLM-enabled iOS apps leaked exploitable credentials (plaintext keys, unauthenticated proxies, JWTs). The feeder channel for LLMjacking.
 
 ## 🪱 AI Malware & Self-Propagating
 
@@ -363,6 +368,7 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[jailbreak-evaluation](https://github.com/controllability/jailbreak-evaluation)** — Python package to score jailbreak success rigorously. Stop eyeballing ASR.
 - **[DeepRed — Partial-Credit CTF Eval](https://arxiv.org/abs/2604.19354)** — LLM agents in isolated Kali+target VMs with checkpoint scoring; best model only 35% avg checkpoint completion. Realistic offensive-agent benchmark.
 - **[CTFusion](https://arxiv.org/abs/2605.11504)** — Evaluates agents on LIVE CTFs to kill benchmark contamination; live solve ~5–7% vs inflated static scores. Leakage-resistant agent eval.
+- **[WASP](https://arxiv.org/abs/2504.18575)** — Benchmarks web-agent security against prompt injection (Operator, Claude Computer Use): agents execute the injected instruction 16–86% of the time. Measures steerability under attack.
 
 ## 💰 Bug Bounty & Disclosure
 
