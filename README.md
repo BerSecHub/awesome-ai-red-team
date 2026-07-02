@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**290+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**295+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -149,6 +149,7 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
 - **[Promptware — "Invitation Is All You Need"](https://arxiv.org/abs/2508.12175)** — Practical, in-production attacks on LLM assistants via calendar invites, emails, and shared docs. Injection as a delivery mechanism against real deployed agents.
 - **[MUZZLE](https://arxiv.org/abs/2602.09222)** — Adaptive agentic red-teaming: watches an agent's trajectory, finds high-salience injection surfaces, generates context-aware payloads — found 37 new attacks incl. cross-app injection. Attack generation, not fixed payloads.
+- **[Cisco MCP Scanner](https://github.com/cisco-ai-defense/mcp-scanner)** — Vendor-grade MCP supply-chain scanner: YARA + LLM-as-judge + pip-audit + VirusTotal, CLI/REST, offline static JSON scan. Vet the tools your agent can call.
 
 ## 🧠 Memory Poisoning & Persistent Agent-State
 
@@ -181,6 +182,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[MalSkillBench](https://arxiv.org/abs/2606.07131)** — Runtime-verified benchmark of malicious agent skills; code-injection skills verify more reliably than prompt-injection ones — scanners must reason over intent + code + instructions jointly.
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 53 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
+- **[Snyk Agent Scan](https://github.com/snyk/agent-scan)** — Local inventory of agents, MCP servers & skills (Claude, Cursor, Codex, Gemini CLI, Windsurf, Kiro…) flagging prompt injection, tool poisoning, toxic flows, and hardcoded secrets.
 
 ## 💉 Prompt Injection & Jailbreaks
 
@@ -276,6 +278,7 @@ Images, audio, and video are the softest injection channel. Everyone tests text;
 - **[Image Hijacks](https://github.com/euanong/image-hijacks)** — Adversarial images that control a VLM's behavior at runtime — steer outputs with a crafted picture.
 - **[UltraBreak](https://arxiv.org/abs/2602.01025)** — Universal, transferable jailbreak for vision-language models — regularizes the adversarial image so it survives black-box targets instead of overfitting one surrogate.
 - **[MemJack — "Every Picture Tells a Dangerous Story"](https://arxiv.org/abs/2604.12616)** — Memory-augmented multi-agent jailbreak mapping entities in unmodified natural images to malicious intent — 71% ASR on Qwen3-VL (→90% extended). Ships MemJack-Bench (113k trajectories).
+- **[VPI-Bench](https://arxiv.org/abs/2506.02456)** — Visual prompt injection against computer-use agents: instructions embedded in rendered UIs across 5 platforms — CUAs deceived up to 51%, browser-use agents up to 100%. DOM-text sanitization isn't enough.
 
 ## 📚 RAG & Vector DB Security
 
@@ -288,6 +291,7 @@ RAG is the enterprise default — and its knowledge base is an injection sink.
 - **[RAG Data Poisoning — Promptfoo](https://www.promptfoo.dev/blog/rag-poisoning/)** — Clear practitioner explainer of RAG poisoning mechanics and testing.
 - **[SilentRetrieval](https://arxiv.org/abs/2605.28074)** — Semantically-preserving RAG corpus poisoning that survives fluency/perplexity screening — retrieval hijack with one poisoned doc per query; transfers to unseen retrievers (ColBERT + commercial embeddings).
 - **[PIDP-Attack](https://arxiv.org/abs/2603.25164)** — Compound RAG attack: inference-time prompt injection + poisoned passages together, without knowing the exact query. Beats PoisonedRAG by 4–16 points across 8 LLMs.
+- **[RefineRAG](https://arxiv.org/abs/2604.07403)** — Word-level RAG poisoning: generate harmful seeds, then optimize wording with the retriever in the loop — 90% success on Natural Questions while killing grammar/repetition artifacts.
 
 ## 🧪 Adversarial ML (classic model attacks)
 
@@ -369,6 +373,8 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[DeepRed — Partial-Credit CTF Eval](https://arxiv.org/abs/2604.19354)** — LLM agents in isolated Kali+target VMs with checkpoint scoring; best model only 35% avg checkpoint completion. Realistic offensive-agent benchmark.
 - **[CTFusion](https://arxiv.org/abs/2605.11504)** — Evaluates agents on LIVE CTFs to kill benchmark contamination; live solve ~5–7% vs inflated static scores. Leakage-resistant agent eval.
 - **[WASP](https://arxiv.org/abs/2504.18575)** — Benchmarks web-agent security against prompt injection (Operator, Claude Computer Use): agents execute the injected instruction 16–86% of the time. Measures steerability under attack.
+- **[OS-Harm](https://arxiv.org/abs/2506.14866)** — Safety benchmark for computer-use agents across email, browser, and code editors — covers deliberate misuse, prompt injection, and model misbehavior.
+- **[Offensive Cyber Capability Benchmark](https://arxiv.org/abs/2604.17159)** — Systematic benchmark of 10 frontier LLMs on offensive tasks; a Kali environment beat Ubuntu by 9.5 points — tooling/environment matters more than "uncensored" branding.
 
 ## 💰 Bug Bounty & Disclosure
 
