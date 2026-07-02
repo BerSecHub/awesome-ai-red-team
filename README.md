@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**300+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**305+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -172,6 +172,7 @@ Copilots and coding agents run with your privileges — poison the context, own 
 - **[Hacking Auto-GPT → Docker escape (RCE)](https://positive.security/blog/auto-gpt-rce)** — Indirect prompt injection into an autonomous agent → arbitrary code exec → container escape. Classic agent-RCE chain.
 - **[AIShellJack — "Attacker's Shell"](https://arxiv.org/abs/2605.25871)** — 314 payloads / 70 MITRE ATT&CK techniques against Cursor & Copilot workflows: 41–84% success. Injection → file access, cred discovery, command exec.
 - **[GitInject](https://arxiv.org/abs/2606.09935)** — Prompt injection in AI-powered GitHub CI/CD pipelines — tests real Actions permission boundaries, runner state, and token exposure, not toy tool calls.
+- **[Are AI-Assisted Dev Tools Immune to Prompt Injection?](https://arxiv.org/abs/2603.21642)** — Empirical tool-poisoning test across Claude Desktop/Code, Cursor, Cline, Continue, Gemini CLI, and Langflow. Spoiler: no.
 
 ## 🧩 Agent Skills & Tool Supply-Chain
 
@@ -207,6 +208,7 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[PALLMs — Payloads for Attacking LLMs](https://github.com/mik0w/pallms)** — Ready-to-fire payload collection for LLM attacks. Grab-and-go.
 - **[Prompt Injection Cheat Sheet (Seclify)](https://blog.seclify.com/prompt-injection-cheat-sheet/)** — Compact field cheat sheet of injection techniques and manipulations.
 - **[Indirect Prompt Injection in the Wild](https://arxiv.org/abs/2604.27202)** — Scanned 1.2B URLs / 24.8M hosts: 15.3K validated indirect injections on 11.7K pages — ~70% hidden in non-rendered HTML (headers, comments, metadata). The threat is already live on the web.
+- **[Prompt Injection 2.0: Hybrid AI Threats](https://arxiv.org/abs/2507.13169)** — Reframes agent attacks as combinations of prompt injection with XSS, CSRF, tool use, worms, and multi-agent behavior — not isolated prompt tricks.
 
 ## 🧨 Jailbreak Frameworks & Methods
 
@@ -459,6 +461,10 @@ Follow the operators, not the vendors.
 - **[Daniel Miessler — AI Attack Surface Map](https://danielmiessler.com/p/the-ai-attack-surface-map-v1-0/)** — The canonical one-page map of the AI attack surface. Great for scoping and client decks.
 - **[llmsecurity.net (@llm_sec)](https://llmsecurity.net/)** — Dedicated LLM-security blog + curation. Follow @llm_sec.
 - **[Kai Greshake](https://kai-greshake.de/)** — Indirect-prompt-injection pioneer's blog — where a lot of this started.
+- **[Varonis Threat Labs](https://www.varonis.com/blog/searchleak)** — SearchLeak / Reprompt: one-click Microsoft 365 Copilot data-exfil chaining parameter→prompt injection, a rendering race, and Bing SSRF. AI-native + classic-web chains.
+- **[Brave — AI Browser Security](https://brave.com/blog/comet-prompt-injection/)** — Indirect prompt injection against agentic browsers (Comet): the agent acts across your authenticated sessions, breaking old web-security assumptions.
+- **[AppOmni — Aaron Costello (SaaS security)](https://appomni.com/ao-labs/)** — "Second-order prompt injection": agents delegating to higher-privilege agents (ServiceNow Now Assist) turn workflow automation into a privilege-boundary problem.
+- **[Guardio Labs](https://guard.io/labs)** — Scamlexity: agentic AI browsers vs fake shops, phishing, and hidden prompts — they clicked, they paid, they failed. Consumer-realistic agent attack surface.
 
 ## 🗣️ Communities & Conferences
 
