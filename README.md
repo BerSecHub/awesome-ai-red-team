@@ -65,6 +65,7 @@ The maps you scope, threat-model, and write reports against.
 - **[Zenity GenAI Attacks Matrix (ttps.ai)](https://ttps.ai/)** — Living matrix of real-world GenAI/agent attack techniques; feeds MITRE ATLAS.
 - **[NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework)** — Governance framework + GenAI profile (AI 600-1). Compliance language clients speak.
 - **[Google SAIF](https://saif.google/)** — Secure AI Framework: design/build/deploy principles + risk self-assessment.
+- **[Coalition for Secure AI (CoSAI)](https://www.coalitionforsecureai.org/)** — OASIS-backed coalition + workstreams on agentic security, supply chain, defender frameworks.
 - **[OWASP ML Security Top 10](https://mltop10.info/)** — Classic (non-LLM) ML risks: poisoning, inversion/extraction, adversarial examples.
 - **[OWASP AI Exchange](https://owaspai.org/)** — 300+ page living reference mapping AI threats to controls and standards (ISO/IEC, EU AI Act).
 - **[CSA MAESTRO](https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro)** — 7-layer threat-modeling method for agentic systems.
@@ -485,7 +486,6 @@ Stay current. The field moves weekly.
 - **[OWASP GenAI Security Project](https://genai.owasp.org/)** — The center of gravity. Join the Slack and working groups.
 - **[DEF CON AI Village](https://aivillage.org/)** — The community + Generative Red Team (GRT) events at DEF CON.
 - **[MLSecOps Community](https://community.mlsecops.com/)** — Slack + resources for ML/AI security practitioners.
-- **[Coalition for Secure AI (CoSAI)](https://www.coalitionforsecureai.org/)** — Industry coalition + open workstreams.
 - **[CAMLIS](https://www.camlis.org/)** — Conference on Applied ML in Information Security. Practitioner-focused, red-team heavy.
 - **[IEEE SaTML](https://satml.org/)** — Secure and Trustworthy ML — top academic venue for attacks/defenses.
 - **[r/ChatGPTJailbreak](https://www.reddit.com/r/ChatGPTJailbreak/)** — The public jailbreak lab — fresh working jailbreaks and techniques daily.
