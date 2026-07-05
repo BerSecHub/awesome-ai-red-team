@@ -535,4 +535,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for the full checklist.
 
 [MIT](LICENSE) © [Rafael Gacek](https://ai.bersec.me) — do whatever, attribution appreciated.
 
-<sub>Curated at <a href="https://ai.bersec.me">ai.bersec.me</a> · also lives as a start.me board.</sub>
+<sub>Curated by <a href="https://bersec.me">bersec.me</a> · hub at <a href="https://ai.bersec.me">ai.bersec.me</a> · also lives as a start.me board.</sub>
