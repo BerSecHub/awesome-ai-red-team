@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**310+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**320+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -368,6 +368,13 @@ Hands-on reps. Where you actually build the skill.
 - **[Damn Vulnerable Shopping LLM](https://github.com/user1342/DamnVulnerableShoppingLLM)** — Vulnerable shopping assistant — test data leakage and unsafe tool use.
 - **[MyLLM Bank (WithSecure)](https://myllmbank.com/)** — Multi-LLM banking CTF — learn real-world prompt-injection chains.
 - **[MyLLM Doctor (WithSecure)](https://myllmdoc.com/)** — Medical chatbot challenge — multi-stage injection and policy evasion.
+- **[HackMerlin](https://hackmerlin.io)** — Wizard-themed prompt-injection game — coax escalating passwords out of Merlin across levels. Slick, addictive on-ramp.
+- **[Tensor Trust](https://tensortrust.ai)** — Attack-and-defend prompt-injection game (UC Berkeley) — build a defense, break everyone else's. Ships a large public human attack dataset.
+- **[LLMail-Inject (Microsoft)](https://microsoft.github.io/llmail-inject)** — Adaptive prompt-injection challenge: sneak instructions past defenses in a simulated LLM email client. Real evasion, real dataset.
+- **[The Great Escape (Pangea)](https://escape.pangea.cloud)** — Multi-room LLM prompt-injection escape challenge with prize pools — jailbreak your way out room by room.
+- **[Immersive Labs — Prompt Injection](https://prompting.ai.immersivelabs.com)** — The classic escalating challenge: 10 levels of tricking a bot into leaking a password. Widely-used intro.
+- **[MCP CTF](https://www.mcpctf.io)** — Capture-the-flag built around Model Context Protocol exploitation — tool poisoning, injection, and agent abuse in a hosted lab.
+- **[Invariant Agent CTF (Challenge 24)](https://invariantlabs.ai/play-ctf-challenge-24)** — Hosted agent-security CTF from the MCP-security crew — practice injection + tool abuse on a real tool-using agent.
 
 ## 📊 Benchmarks & Datasets
 
