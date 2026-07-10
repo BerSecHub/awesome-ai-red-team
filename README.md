@@ -114,6 +114,7 @@ The force multiplier. Where offense is heading — and the moat you're building.
 - **[Cyber-AutoAgent](https://github.com/westonbrown/Cyber-AutoAgent)** — Autonomous cyber agent (recon→exploit) on open frameworks. Good code to study for building your own.
 - **[HexStrike AI](https://github.com/0x4m4/hexstrike-ai)** — MCP server wiring LLMs (Claude/GPT/Copilot) to 150+ security tools for autonomous pentest, vuln discovery, bounty automation. Shipped in Kali.
 - **[PentAGI](https://github.com/vxcontrol/pentagi)** — Fully autonomous multi-agent pentest system in Docker sandboxes (14k+ stars).
+- **[Darkmoon](https://github.com/ASCIT31/Dark-Moon)** — Open-source (GPL-3.0) autonomous AI pentester and MCP host. Per-tech offensive sub-agents chain recon, exploitation and post-ex across web, cloud, Active Directory and Kubernetes, proving each finding with real execution and an evidence trail. Runs a local 14B LLM; a Privacy Gateway means the model never sees real IPs, hosts, creds or paths (deterministic placeholders rehydrated locally).
 - **[Strix](https://github.com/usestrix/strix)** — Autonomous agent that simulates a human attacker and proves findings with working PoC exploits.
 - **[FuseAI](https://getfuseai.com/)** — Multi-agent AI platform for automated pentest & vuln management. Chains agents across recon→exploit→report.
 - **[pentest-ai (0xSteph)](https://github.com/0xsteph/pentest-ai)** — Offensive MCP server: 205 wrapped tools, 17 specialist agents, 60 SPA-aware OWASP-Top-10 probes. CLI + MCP, bring-your-own-LLM.
