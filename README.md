@@ -99,6 +99,7 @@ The frameworks you actually run against a target.
 - **[LLM-itM (LLM-in-the-Middle)](https://github.com/user1342/LLM-itM)** — MitM proxy for OpenAI-compatible APIs — inspect and modify prompts/responses on the wire. Burp for LLM traffic.
 - **[Plexiglass](https://github.com/kortex-labs/plexiglass)** — Security toolbox for testing & safeguarding LLMs — adversarial prompts, toxicity, jailbreak checks.
 - **[WhistleBlower](https://github.com/Repello-AI/whistleblower)** — Infers a target agent's hidden system prompt from its outputs. System-prompt extraction on tap.
+- **[Sentinel Scan (Ventrova)](https://github.com/Ventrova/sentinel-scan-cli)** — CLI for authorized LLM red-team audits: prompt injection, jailbreak, and data-leak probes with a scored, shareable report.
 
 ## 🦾 AI-Augmented Offense (hack WITH AI)
 
