@@ -72,6 +72,7 @@ The maps you scope, threat-model, and write reports against.
 - **[MIT AI Risk Repository](https://airisk.mit.edu/)** — 1000+ catalogued AI risks with causal + domain taxonomies.
 - **[OWASP AIVSS — AI Vulnerability Scoring System](https://vineethsai.github.io/aivss/)** — Emerging CVSS-equivalent for scoring AI/agentic vulns. Rate findings consistently in reports.
 - **[EU AI Act](https://artificialintelligenceact.eu/)** — The regulation reshaping AI risk/compliance in the EU. Know it for client engagements.
+- **[Orca AI Incident Archive](https://github.com/Continuum-AI-Corp/Orca-AI-Incident-Archive)** — 354 sourced AI-agent security records with attack-chain diagrams, each flagged confirmed-harm vs. demo. Real-world precedent to cite when scoping and writing up agent findings.
 
 ## 🛠️ LLM Red-Team Tools & Scanners
 
