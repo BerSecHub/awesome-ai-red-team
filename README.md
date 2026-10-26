@@ -258,6 +258,7 @@ Local, low-refusal firepower. For authorized engagements — run it on your box.
 - **[Foundation-Sec-8B (Cisco)](https://huggingface.co/fdtn-ai/Foundation-Sec-8B)** — Cisco Foundation AI's cybersecurity base model: Llama-3.1-8B continued-pretrained on threat intel, vulnerability databases, and incident-response text.
 - **[huihui_ai — abliterated models (Ollama)](https://ollama.com/huihui_ai)** — Pull-and-run collection of refusal-removed models locally.
 - **[Dolphin / uncensored (cognitivecomputations)](https://huggingface.co/cognitivecomputations)** — Long-running uncensored fine-tune line; solid no-refusal base for tooling.
+- **[UNST33R](https://unst33r.si/)** — Hosted uncensored and abliterated open-weight LLMs (GLM-5.3, DeepSeek-V4.1-Flash) behind one OpenAI-compatible endpoint, for when you can't run it on your box. Paid, authorized-use only.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
 
