@@ -7,3 +7,7 @@ https://platform.openai.com/tokenizer
 https://haizelabs.com/
 https://redarena.ai/
 https://ai.bersec.me
+# Status badges. Not resources; these hosts flake and are not part of the list.
+https://img.shields.io/.*
+https://awesome.re/badge.svg
+https://github.com/BerSecHub/awesome-ai-red-team/actions/.*

@@ -35,7 +35,8 @@ Rules:
 - Keep the **operator voice**: direct, technical, no fluff.
 - Tag defenses with `*Bypass target.*` at the start of the description.
 - If the project is archived, say so in the one-liner. Seminal archived tools stay; dead links do not.
-- **Start here** and **Run an engagement** are navigation. New resources go in a category section.
+- **⭐** marks the one or two entries to open first in a category. Add a star only when it replaces that pick.
+- **Start here**, **Run an engagement**, **Tools by phase**, the technique cheat sheet, and the MCP test checklist are navigation. They name a resource. The URL lives in exactly one category section.
 - Rough "most useful first" ordering is fine — strict alphabetical is not required.
 
 ## How to submit

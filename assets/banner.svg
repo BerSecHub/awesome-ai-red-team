@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="188" viewBox="0 0 1200 188" role="img" aria-labelledby="bannerTitle bannerDesc">
+  <title id="bannerTitle">Awesome AI Red Team</title>
+  <desc id="bannerDesc">Offensive AI security for practicing red teamers. LLM, agents, MCP, RAG, and model supply chain.</desc>
+  <defs>
+    <clipPath id="card">
+      <rect width="1200" height="188" rx="18"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#card)">
+    <rect width="1200" height="188" fill="#161b22"/>
+    <rect width="11" height="188" fill="#f85149"/>
+    <g fill="none" stroke="#f85149" stroke-width="3" stroke-linecap="square">
+      <circle cx="86" cy="94" r="36"/>
+      <circle cx="86" cy="94" r="14"/>
+      <path d="M86 46v16M86 126v16M38 94h16M118 94h16"/>
+    </g>
+    <circle cx="86" cy="94" r="3" fill="#f85149"/>
+    <text x="156" y="78" fill="#f0f6fc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="42" font-weight="700">Awesome AI Red Team</text>
+    <text x="158" y="112" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="20">Offensive AI security for practicing red teamers</text>
+    <text x="158" y="150" fill="#f85149" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" letter-spacing="1.5">LLM  /  AGENTS  /  MCP  /  RAG  /  SUPPLY CHAIN</text>
+  </g>
+  <rect x="1.5" y="1.5" width="1197" height="185" rx="16.5" fill="none" stroke="#30363d" stroke-width="1.5"/>
+</svg>
