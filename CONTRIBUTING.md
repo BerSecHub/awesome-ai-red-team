@@ -34,6 +34,8 @@ Rules:
 - **One line.** If you can't explain the value in a sentence, it's probably not sharp enough.
 - Keep the **operator voice**: direct, technical, no fluff.
 - Tag defenses with `*Bypass target.*` at the start of the description.
+- If the project is archived, say so in the one-liner. Seminal archived tools stay; dead links do not.
+- **Start here** and **Run an engagement** are navigation. New resources go in a category section.
 - Rough "most useful first" ordering is fine — strict alphabetical is not required.
 
 ## How to submit

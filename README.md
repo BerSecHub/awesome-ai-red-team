@@ -10,7 +10,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/commits/main"><img src="https://img.shields.io/github/last-commit/BerSecHub/awesome-ai-red-team?style=flat-square" alt="Last commit"></a>
 </p>
 
-**320+ hand-picked resources across 29 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**342 hand-picked resources across 31 categories.** Curated by **[Rafael Gacek](https://ai.bersec.me)** — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 > ⚠️ **Authorized use only.** Everything here is for red-team engagements, security research, and CTFs you have permission to run.
 
@@ -18,10 +18,42 @@
 
 Most "AI security" lists are academic paper dumps or vendor brochures. This one is built by an operator, for operators — weighted toward **things you actually run**: scanners, jailbreak frameworks, payload crafters, agentic/MCP exploits, offensive LLMs, and labs. If you attack, break, or defend AI systems, this is the map.
 
+---
+
+## Start here
+
+One afternoon, in this order. Names point at the section that holds the link — each URL lives in exactly one place.
+
+1. **Learn the map.** Frameworks: OWASP Top 10 for LLM Applications, OWASP Top 10 for Agentic Applications (2026), MITRE ATLAS. If the target uses tools, the Agentic Top 10 is the scope doc.
+2. **Break one thing by hand.** Labs: Gandalf, then PortSwigger's Web LLM labs or HackMerlin.
+3. **Run a scanner.** Tools: garak against a model you control, or promptfoo if the prompt lives in a repo. PyRIT when you need multi-turn (Crescendo, TAP, Skeleton Key).
+4. **Read one production chain.** Prompt Injection: EchoLeak (CVE-2025-32711). Then People: Johann Rehberger.
+
+**Leave these open**
+
+- **Recon** — LLMmap and leaked system prompts, both under Tools and Prompt Injection.
+- **Payloads** — L1B3RT4S, PayloadsAllTheThings, and Parseltongue.
+- **Agents and MCP** — Snyk Agent Scan, Damn Vulnerable MCP Server, AgentDojo.
+- **The integration, not the base model** — indirect injection, RAG, memory poisoning, coding-agent context. A refusal on a naked prompt is not a finding.
+- **Close the report** — an ATLAS technique, the matching Top 10 id, an AIVSS score, and the bounty program's actual scope.
+
+## Run an engagement
+
+Default order on an authorized target. Skip a step only when the rules of engagement put that layer out of scope.
+
+1. **Scope.** Frameworks. Name the system: chat, RAG, agent, coding assistant, or raw model API. Write the rules before you send a payload. Agents get the Agentic Top 10. A raw model API still includes extraction and membership inference.
+2. **Recon.** Fingerprint the model (LLMmap, in Tools). Pull public system prompts and known jailbreaks (Prompt Injection). Inventory agents, MCP servers, and skills (Agentic & MCP, Agent Skills).
+3. **Model layer.** Jailbreak Frameworks and Tools. Direct injection, one multi-turn orchestrator, and an obfuscation pass against whatever classifier sits in front. Score with StrongREJECT (Benchmarks), not with "it said something."
+4. **Integration layer.** This is where the report comes from. Untrusted content the model will read, a privilege the agent holds, and a way out. Work indirect injection, RAG, memory poisoning, MCP and tool poisoning, and coding-agent context. EchoLeak is the shape: retrieval, then a markdown exfil sink.
+5. **Supply chain and infra.** MLSecOps when you can touch weights or pickles. Cloud, Inference & LLMjacking for keys, dashboards, and gateways — Ray, Ollama, LiteLLM. A stolen cloud key that spends someone else's quota is a finding even when the prompt filter holds.
+6. **Report.** Map the chain to MITRE ATLAS and the right Top 10 item. Score it with AIVSS, plus the client's scale if they have one. Read Microsoft's writeup of 100 GenAI red teams before you draft the narrative. Check Bug Bounty scope: several programs pay for agent hijacks and refuse a bare jailbreak.
 
 ---
 
 ## Contents
+
+- [Start here](#start-here)
+- [Run an engagement](#run-an-engagement)
 
 1. [🎯 Frameworks, Standards & Taxonomies](#-frameworks-standards--taxonomies)
 2. [🛠️ LLM Red-Team Tools & Scanners](#️-llm-red-team-tools--scanners)
@@ -34,24 +66,26 @@ Most "AI security" lists are academic paper dumps or vendor brochures. This one 
 9. [💉 Prompt Injection & Jailbreaks](#-prompt-injection--jailbreaks)
 10. [🧨 Jailbreak Frameworks & Methods](#-jailbreak-frameworks--methods)
 11. [🐍 Payload Obfuscation & Token Smuggling](#-payload-obfuscation--token-smuggling)
-12. [☁️ Cloud AI Attack & LLMjacking](#️-cloud-ai-attack--llmjacking)
+12. [☁️ Cloud, Inference & LLMjacking](#️-cloud-inference--llmjacking)
 13. [🪱 AI Malware & Self-Propagating](#-ai-malware--self-propagating)
 14. [🎭 Deepfake & Voice Offense](#-deepfake--voice-offense)
 15. [🖼️ Multimodal / Vision / Audio Attacks](#️-multimodal--vision--audio-attacks)
 16. [📚 RAG & Vector DB Security](#-rag--vector-db-security)
-17. [🧪 Adversarial ML](#-adversarial-ml-classic-model-attacks)
-18. [☠️ Data Poisoning & Backdoors](#️-data-poisoning--backdoors)
-19. [🔗 MLSecOps & Model Supply Chain](#-mlsecops--model-supply-chain)
-20. [🕹️ Labs, CTFs & Challenges](#️-labs-ctfs--challenges)
-21. [📊 Benchmarks & Datasets](#-benchmarks--datasets)
-22. [💰 Bug Bounty & Disclosure](#-bug-bounty--disclosure)
-23. [📖 Awesome Lists & Curations](#-awesome-lists--curations)
-24. [🎓 Courses & Certifications](#-courses--certifications)
-25. [📕 Books](#-books)
-26. [🧑‍💻 People & Blogs to Follow](#-people--blogs-to-follow)
-27. [🗣️ Communities & Conferences](#️-communities--conferences)
-28. [📰 Newsletters & Podcasts](#-newsletters--podcasts)
-29. [🏢 Vendor & Market Landscape](#-vendor--market-landscape)
+17. [🧪 Adversarial ML (classic model attacks)](#-adversarial-ml-classic-model-attacks)
+18. [🔓 Model Extraction, Inversion & Membership Inference](#-model-extraction-inversion--membership-inference)
+19. [☠️ Data Poisoning & Backdoors](#️-data-poisoning--backdoors)
+20. [🔗 MLSecOps & Model Supply Chain](#-mlsecops--model-supply-chain)
+21. [🕹️ Labs, CTFs & Challenges](#️-labs-ctfs--challenges)
+22. [📊 Benchmarks & Datasets](#-benchmarks--datasets)
+23. [💰 Bug Bounty & Disclosure](#-bug-bounty--disclosure)
+24. [📖 Awesome Lists & Curations](#-awesome-lists--curations)
+25. [🎓 Courses & Certifications](#-courses--certifications)
+26. [📕 Books](#-books)
+27. [🧑‍💻 People & Blogs to Follow](#-people--blogs-to-follow)
+28. [🗣️ Communities & Conferences](#️-communities--conferences)
+29. [🎤 Talks](#-talks)
+30. [📰 Newsletters & Podcasts](#-newsletters--podcasts)
+31. [🏢 Vendor & Market Landscape](#-vendor--market-landscape)
 
 ---
 
@@ -60,6 +94,7 @@ Most "AI security" lists are academic paper dumps or vendor brochures. This one 
 The maps you scope, threat-model, and write reports against.
 
 - **[OWASP Top 10 for LLM Applications (2025)](https://genai.owasp.org/llm-top-10/)** — Definitive risk taxonomy for LLM apps. Baseline for scoping any engagement.
+- **[OWASP Top 10 for Agentic Applications (2026)](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/)** — The scope doc once the target plans and uses tools: goal hijack, tool misuse, identity abuse, supply chain, unexpected code exec, memory poisoning, inter-agent traffic, cascading failure, trust abuse, rogue agents.
 - **[OWASP LLM AI Security & Governance Checklist](https://genai.owasp.org/resource/llm-applications-cybersecurity-and-governance-checklist-english/)** — 13-item action checklist. Great for client-facing framing.
 - **[MITRE ATLAS](https://atlas.mitre.org/)** — Adversary TTP matrix for ML/AI (16 tactics, 84+ techniques). The ATT&CK of AI.
 - **[Zenity GenAI Attacks Matrix (ttps.ai)](https://ttps.ai/)** — Living matrix of real-world GenAI/agent attack techniques; feeds MITRE ATLAS.
@@ -71,6 +106,8 @@ The maps you scope, threat-model, and write reports against.
 - **[CSA MAESTRO](https://cloudsecurityalliance.org/blog/2025/02/06/agentic-ai-threat-modeling-framework-maestro)** — 7-layer threat-modeling method for agentic systems.
 - **[MIT AI Risk Repository](https://airisk.mit.edu/)** — 1000+ catalogued AI risks with causal + domain taxonomies.
 - **[OWASP AIVSS — AI Vulnerability Scoring System](https://vineethsai.github.io/aivss/)** — Emerging CVSS-equivalent for scoring AI/agentic vulns. Rate findings consistently in reports.
+- **[OWASP GenAI Red Teaming Guide](https://genai.owasp.org/resource/genai-red-teaming-guide/)** — Engagement structure across model, implementation, infrastructure, and runtime. The test-plan skeleton, not a payload list.
+- **[Lessons from red teaming 100 GenAI products (Microsoft)](https://www.microsoft.com/en-us/security/blog/2025/01/13/3-takeaways-from-red-teaming-100-generative-ai-products/)** — What Microsoft's AI red team actually found across 100 products, and how they wrote it up. Read it before you file the report.
 - **[EU AI Act](https://artificialintelligenceact.eu/)** — The regulation reshaping AI risk/compliance in the EU. Know it for client engagements.
 
 ## 🛠️ LLM Red-Team Tools & Scanners
@@ -78,7 +115,7 @@ The maps you scope, threat-model, and write reports against.
 The frameworks you actually run against a target.
 
 - **[garak (NVIDIA)](https://github.com/NVIDIA/garak)** — *The* LLM vuln scanner. 120+ probes; broadest automated base-model coverage; now includes agentic probing.
-- **[PyRIT (Microsoft)](https://github.com/microsoft/PyRIT)** — Multi-turn orchestrators — Crescendo, TAP, Skeleton Key. *(Repo moved from Azure/PyRIT, archived Mar 2026.)*
+- **[PyRIT (Microsoft)](https://github.com/microsoft/PyRIT)** — Multi-turn orchestrators — Crescendo, TAP, Skeleton Key. Actively maintained; this is the harness those three attacks ship in.
 - **[Promptfoo](https://github.com/promptfoo/promptfoo)** — Dev-loop red teaming + evals. Auto-generates attack cases; CI/CD regression testing. Ships a Pliny plugin.
 - **[DeepTeam](https://github.com/confident-ai/deepteam)** — 50+ vulnerabilities, 20+ research-backed attacks (single & multi-turn). Pairs with DeepEval.
 - **[Giskard](https://github.com/Giskard-AI/giskard)** — Open-source LLM & ML testing: injection, harmful output, hallucination, bias.
@@ -104,16 +141,16 @@ The frameworks you actually run against a target.
 
 The force multiplier. Where offense is heading — and the moat you're building.
 
-- **[XBOW](https://xbow.com/)** — Autonomous pentester that hit **#1 on HackerOne US** (1,000+ valid reports). $237M raised, $1B+ valuation. Proof AI offense is real.
+- **[XBOW](https://xbow.com/)** — Autonomous pentester that reached the top of the HackerOne leaderboard. Series C totaled $155M by May 2026, valued over $1B.
 - **[PentestGPT](https://github.com/GreyDGL/PentestGPT)** — LLM-guided pentest framework; multi-model. Web, pwn, crypto, priv-esc, CTF.
-- **[CAI — Cybersecurity AI (Alias Robotics)](https://github.com/aliasrobotics/cai)** — Bug-bounty-ready agent framework: agents, tools, handoffs, tracing, HITL. 300+ model backends.
+- **[CAI — Cybersecurity AI (Alias Robotics)](https://github.com/aliasrobotics/cai)** — Bug-bounty-ready agent framework: agents, tools, handoffs, tracing, HITL. Archived August 2026 — still the reference codebase.
 - **[HackingBuddyGPT](https://github.com/ipa-lab/hackingBuddyGPT)** — LLMs that execute shell in a sandbox and decide next move. 83% Linux priv-esc with guidance.
 - **[Nebula (BerylliumSec)](https://github.com/berylliumsec/nebula)** — AI pentest assistant in the CLI: recon, notes, vuln analysis with local Llama/Mistral.
 - **[Vulnhuntr (Protect AI)](https://github.com/protectai/vulnhuntr)** — Zero-shot vuln discovery: LLM traces full call chains input→sink in Python. Found real 0-days.
 - **[Awesome AI Hacking Agents](https://github.com/EvanThomasLuke/Awesome-AI-Hacking-Agents)** — Curated list of autonomous AI hacking agents & frameworks.
-- **[Cyber-AutoAgent](https://github.com/westonbrown/Cyber-AutoAgent)** — Autonomous cyber agent (recon→exploit) on open frameworks. Good code to study for building your own.
+- **[Cyber-AutoAgent](https://github.com/westonbrown/Cyber-AutoAgent)** — Autonomous cyber agent (recon→exploit) on open frameworks. Archived November 2025; still useful code to study.
 - **[HexStrike AI](https://github.com/0x4m4/hexstrike-ai)** — MCP server wiring LLMs (Claude/GPT/Copilot) to 150+ security tools for autonomous pentest, vuln discovery, bounty automation. Shipped in Kali.
-- **[PentAGI](https://github.com/vxcontrol/pentagi)** — Fully autonomous multi-agent pentest system in Docker sandboxes (14k+ stars).
+- **[PentAGI](https://github.com/vxcontrol/pentagi)** — Fully autonomous multi-agent pentest system in Docker sandboxes (32k+ stars).
 - **[Strix](https://github.com/usestrix/strix)** — Autonomous agent that simulates a human attacker and proves findings with working PoC exploits.
 - **[FuseAI](https://getfuseai.com/)** — Multi-agent AI platform for automated pentest & vuln management. Chains agents across recon→exploit→report.
 - **[pentest-ai (0xSteph)](https://github.com/0xsteph/pentest-ai)** — Offensive MCP server: 205 wrapped tools, 17 specialist agents, 60 SPA-aware OWASP-Top-10 probes. CLI + MCP, bring-your-own-LLM.
@@ -145,7 +182,7 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[Invariant Labs](https://invariantlabs.ai/)** — Tool-poisoning disclosures, agent guardrails, and MCP security tooling research.
 - **[Damn Vulnerable Email Agent (kyuz0)](https://github.com/kyuz0/damn-vulnerable-email-agent)** — Vulnerable email-handling agent — practice indirect injection via inbound mail.
 - **[SuperClaw](https://github.com/SuperagenticAI/superclaw)** — Scenario-driven, behavior-first red teaming for autonomous agents. Generates adversarial scenarios, scores vs security contracts. pip install.
-- **[MCP-Scan (Invariant / Snyk)](https://github.com/invariantlabs-ai/mcp-scan)** — Static + dynamic scanner for MCP connections: tool poisoning, cross-origin escalation, rug pulls, toxic flows. The MCP audit standard.
+- **[Snyk Agent Scan (formerly MCP-Scan)](https://github.com/snyk/agent-scan)** — Invariant's MCP scanner, renamed under Snyk. Inventory agents, MCP servers, and skills; flag tool poisoning, rug pulls, toxic flows, and secrets. The MCP audit standard.
 - **[MCP Injection Experiments](https://github.com/invariantlabs-ai/mcp-injection-experiments)** — Working PoCs that exfiltrate SSH keys/config from Claude Desktop & Cursor via tool poisoning. Copy-paste attack lab.
 - **[The Lethal Trifecta (Simon Willison)](https://simonwillison.net/series/prompt-injection/)** — Private data + untrusted content + exfiltration = the core agentic exploit class.
 - **[Promptware — "Invitation Is All You Need"](https://arxiv.org/abs/2508.12175)** — Practical, in-production attacks on LLM assistants via calendar invites, emails, and shared docs. Injection as a delivery mechanism against real deployed agents.
@@ -167,6 +204,8 @@ The 2026 frontier. Don't jailbreak the model — poison its persistent state, th
 Copilots and coding agents run with your privileges — poison the context, own the shell.
 
 - **[TrustFall — 1-click RCE (Adversa)](https://adversa.ai/blog/trustfall-coding-agent-security-flaw-rce-claude-cursor-gemini-cli-copilot/)** — Folder-trust abuse: a malicious repo spawns unsandboxed code on Claude Code, Cursor, Gemini CLI, Copilot with one keypress.
+- **[IDEsaster (MaccariTA)](https://maccarita.com/posts/idesaster/)** — Prompt injection plus ordinary IDE features: 24 CVEs across Cursor, Copilot, Windsurf, Roo Code, Junie, Cline, and others. A poisoned repo becomes secret theft or RCE.
+- **[CamoLeak (Legit Security)](https://www.legitsecurity.com/blog/camoleak-critical-github-copilot-vulnerability-leaks-private-source-code)** — GitHub Copilot Chat leaked private code via remote prompt injection and a CSP bypass through GitHub's own image proxy (CVSS 9.6). GitHub's fix was to stop rendering those images.
 - **["Your AI, My Shell"](https://arxiv.org/abs/2509.22040)** — Systematic study of prompt-injection → shell on agentic AI editors. 85%+ success with adaptive attacks.
 - **[Prompt Injection on Agentic Coding Assistants](https://arxiv.org/abs/2601.17548)** — Vulnerability analysis across skills, tools, and MCP ecosystems.
 - **[CSA — AI Coding Assistants as Attack Surface](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-coding-assistant-attack-surface-2026040/)** — Practitioner note: code, skills, and secrets as entry points.
@@ -185,7 +224,6 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[MalSkillBench](https://arxiv.org/abs/2606.07131)** — Runtime-verified benchmark of malicious agent skills; code-injection skills verify more reliably than prompt-injection ones — scanners must reason over intent + code + instructions jointly.
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 53 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
-- **[Snyk Agent Scan](https://github.com/snyk/agent-scan)** — Local inventory of agents, MCP servers & skills (Claude, Cursor, Codex, Gemini CLI, Windsurf, Kiro…) flagging prompt injection, tool poisoning, toxic flows, and hardcoded secrets.
 - **[Skill-Inject](https://arxiv.org/abs/2602.20156)** — Benchmark measuring agent vulnerability to malicious/compromised skill files — the supply-chain surface for Claude Code / Codex-style skill ecosystems.
 
 ## 💉 Prompt Injection & Jailbreaks
@@ -198,6 +236,8 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[Prompt Hacking Resources (PromptLabs)](https://github.com/PromptLabs/Prompt-Hacking-Resources)** — Curated hub of red-teaming, jailbreaking, and injection resources.
 - **[LLM Hacker's Handbook (Forces Unseen)](https://github.com/forcesunseen/llm-hackers-handbook)** — Practical, non-academic guide: fundamentals, injection, offense, defense.
 - **[greshake/llm-security](https://github.com/greshake/llm-security)** — "Not what you've signed up for" — the seminal indirect prompt-injection PoCs.
+- **[Indirect Prompt Injection (Greshake et al.)](https://arxiv.org/abs/2302.12173)** — The paper behind that PoC. Indirect injection against real LLM-integrated apps, which is the pattern every copilot copied.
+- **[EchoLeak (Aim Labs / Cato)](https://www.catonetworks.com/blog/breaking-down-echoleak/)** — Zero-click Microsoft 365 Copilot chain, CVE-2025-32711: one email, RAG retrieval across the tenant, markdown-image exfil. The production indirect-injection report.
 - **[Learn Prompting — Prompt Hacking](https://learnprompting.org/docs/prompt_hacking/introduction)** — Structured intro to injection/jailbreak/leaking.
 - **[Arcanum Prompt Injection Taxonomy](https://github.com/Arcanum-Sec/arc_pi_taxonomy)** — Jason Haddix's structured classification of injection attack types (the `arc_pi_taxonomy` repo).
 - **[PIPE — Prompt Injection Primer for Engineers](https://github.com/jthack/PIPE)** — Compact, practical primer on prompt injection for builders and red teamers.
@@ -207,7 +247,6 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[The Big Prompt Library](https://github.com/0xeb/TheBigPromptLibrary)** — Huge collection of system prompts, jailbreaks, and protection prompts across ChatGPT/Copilot/Claude/Gemini. Recon + payload mine.
 - **[Ignore Previous Prompt (Perez & Ribeiro)](https://arxiv.org/abs/2211.09527)** — The paper that put "prompt injection" on the map. Foundational reading.
 - **[PALLMs — Payloads for Attacking LLMs](https://github.com/mik0w/pallms)** — Ready-to-fire payload collection for LLM attacks. Grab-and-go.
-- **[Prompt Injection Cheat Sheet (Seclify)](https://blog.seclify.com/prompt-injection-cheat-sheet/)** — Compact field cheat sheet of injection techniques and manipulations.
 - **[Indirect Prompt Injection in the Wild](https://arxiv.org/abs/2604.27202)** — Scanned 1.2B URLs / 24.8M hosts: 15.3K validated indirect injections on 11.7K pages — ~70% hidden in non-rendered HTML (headers, comments, metadata). The threat is already live on the web.
 - **[Prompt Injection 2.0: Hybrid AI Threats](https://arxiv.org/abs/2507.13169)** — Reframes agent attacks as combinations of prompt injection with XSS, CSRF, tool use, worms, and multi-agent behavior — not isolated prompt tricks.
 
@@ -215,6 +254,11 @@ The core offensive discipline. Read the theory, steal the payloads.
 
 Attack-technique implementations — when a scanner isn't enough and you need the actual method.
 
+- **[Many-shot jailbreaking (Anthropic)](https://www.anthropic.com/research/many-shot-jailbreaking)** — Hundreds of in-context harmful Q&A pairs walk a model past alignment. No gradients, no suffix, just a long prompt.
+- **[Crescendo](https://arxiv.org/abs/2404.01833)** — Multi-turn jailbreak that starts benign and escalates. This is the attack PyRIT's Crescendo orchestrator implements.
+- **[Skeleton Key (Microsoft)](https://www.microsoft.com/en-us/security/blog/2024/06/26/mitigating-skeleton-key-a-new-type-of-generative-ai-jailbreak-technique/)** — One prompt that asks the model to "augment" rather than refuse, then stamps later answers with a warning. A policy bypass, not a suffix.
+- **[TAP — Tree of Attacks with Pruning](https://arxiv.org/abs/2312.02119)** — An attacker model branches jailbreaks and drops the ones an evaluator rejects. Black-box and query-efficient; PyRIT ships it.
+- **[Simple adaptive attacks (Andriushchenko et al.)](https://arxiv.org/abs/2404.02151)** — Breaks leading safety-aligned models, and a lot of published defenses, with straightforward adaptive search. A guardrail paper with no adaptive attack is not a result.
 - **[EasyJailbreak](https://github.com/EasyJailbreak/EasyJailbreak)** — Unified framework: 11 classic attacks (AutoDAN, PAIR, GPTFuzz, DeepInception…) via Selector/Mutator/Constraint/Evaluator.
 - **[GPTFuzz](https://github.com/sherdencooper/GPTFuzz)** — AFL-inspired black-box jailbreak fuzzer; auto-generates jailbreak templates from seeds.
 - **[Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection)** — USENIX Sec'24 benchmark: 5 injection attacks × 10 defenses × 10 LLMs × 7 tasks.
@@ -246,15 +290,18 @@ Where nobody's looking. Beat filters that only read plaintext — encode, hide, 
 - **[PUZZLED](https://arxiv.org/abs/2508.01306)** — Mask harmful keywords as anagrams / crosswords / word-search — the model's own reasoning reconstructs the instruction, so raw-prompt scanners miss it. 88.8% ASR across 5 LLMs.
 - **[Controlled-Release Prompting](https://arxiv.org/abs/2510.01529)** — Exploits the cheap-guard vs strong-model split: encode intent so the lightweight prompt guard can't decode it but the main LLM can. The resource-asymmetry bypass.
 
-## ☁️ Cloud AI Attack & LLMjacking
+## ☁️ Cloud, Inference & LLMjacking
 
-Where AI meets your cloud-security edge. SSRF a model endpoint, steal the token, ride the quota.
+Where AI meets your cloud-security edge. SSRF a model endpoint, steal the token, ride the quota — or just hit the inference server that was never meant to face the network.
 
 - **[HackTricks — Cloud SSRF → metadata creds](https://book.hacktricks.xyz/pentesting-web/ssrf-server-side-request-forgery/cloud-ssrf)** — SSRF an AI web app → hit the metadata service → steal the service-account token. AWS/Azure/GCP.
 - **[Unit 42 — Autonomous AI attacks the cloud](https://unit42.paloaltonetworks.com/autonomous-ai-cloud-attacks/)** — Building an autonomous multi-agent cloud-offense system: recon → SSRF → token theft → lateral.
 - **[Unit 42 — Attacking Bedrock multi-agent apps](https://unit42.paloaltonetworks.com/amazon-bedrock-multiagent-applications/)** — Abusing Amazon Bedrock multi-agent deployments. Concrete agentic-cloud tradecraft.
 - **[Why Attackers Target AWS Bedrock (Vectra)](https://www.vectra.ai/resources/threat-briefing-why-attackers-target-aws-bedrock)** — LLMjacking + Bedrock abuse: stolen creds → invoke hosted models on the victim's bill.
 - **[LLMjacking (Sysdig)](https://sysdig.com/blog/llmjacking-stolen-cloud-credentials-used-in-new-ai-attack/)** — The report that coined "LLMjacking": stolen cloud creds proxied into hosted LLMs (Bedrock/Azure), victim foots up to ~$46k/day. The origin story of the category.
+- **[ShadowRay (Oligo)](https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild)** — In-the-wild campaign against exposed Ray dashboards via disputed CVE-2023-48022. An open Ray port on an AI cluster is shared infrastructure, not a dev convenience.
+- **[Probllama — Ollama RCE (Wiz)](https://www.wiz.io/blog/probllama-ollama-vulnerability-cve-2024-37032)** — CVE-2024-37032, unauthenticated remote code execution in Ollama. An exposed Ollama port is a shell.
+- **[LiteLLM MCP command injection (CSA)](https://labs.cloudsecurityalliance.org/research/csa-research-note-litellm-cve-2026-42271-ai-gateway-exploita/)** — CVE-2026-42271: command injection on LiteLLM's MCP test endpoints, chained with Starlette's BadHost auth bypass (CVE-2026-48710) to unauthenticated RCE. Added to CISA KEV in June 2026.
 - **[Mind Your Key — LLM API Key Leakage in iOS Apps](https://arxiv.org/abs/2606.12212)** — 282 of 444 LLM-enabled iOS apps leaked exploitable credentials (plaintext keys, unauthenticated proxies, JWTs). The feeder channel for LLMjacking.
 
 ## 🪱 AI Malware & Self-Propagating
@@ -268,7 +315,7 @@ Injection as a delivery mechanism. Where offense stops being one-shot and starts
 
 For authorized social-engineering ops — the media layer of the kill chain.
 
-- **[DeepFaceLab](https://github.com/iperov/DeepFaceLab)** — The de-facto open-source face-swap/deepfake toolkit. For authorized social-engineering / red-team media ops.
+- **[DeepFaceLab](https://github.com/iperov/DeepFaceLab)** — The reference open-source face-swap toolkit. Archived November 2024; still what you reach for on authorized media ops.
 - **[RVC — Voice Conversion](https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI)** — Retrieval-based voice cloning/conversion. Clone a voice from seconds of audio for authorized vishing simulations.
 - **[Bishop Fox — Deepfakes in Red Teaming](https://bishopfox.com/resources/attacking-defending-deepfakes-virtual-session)** — Real-world lessons on operationalizing deepfakes in red-team engagements.
 - **[Sirens' Whisper (SWhisper)](https://arxiv.org/abs/2603.13847)** — Inaudible near-ultrasonic prompts that demodulate through commodity mics to jailbreak speech-driven LLMs — black-box, and humans can't hear it. Physical-channel voice-agent attack.
@@ -296,7 +343,6 @@ RAG is the enterprise default — and its knowledge base is an injection sink.
 - **[PoisonedRAG](https://github.com/sleeepeer/PoisonedRAG)** — USENIX Sec'25 — first knowledge-corruption attack on RAG. 90% success with 5 poisoned docs.
 - **[ConfusedPilot](https://arxiv.org/abs/2408.04870)** — Confused-deputy / access-control bypass in RAG (demoed on M365 Copilot).
 - **[RAG Poisoning POC (Prompt Security)](https://github.com/prompt-security/RAG_Poisoning_POC)** — Stealthy injection/poisoning via vector-DB embeddings.
-- **[Awesome-Rag-Attacks](https://github.com/jawadhussein462/Awesome-Rag-Attacks)** — Framework + curated list for implementing/evaluating RAG poisoning.
 - **[RAG Data Poisoning — Promptfoo](https://www.promptfoo.dev/blog/rag-poisoning/)** — Clear practitioner explainer of RAG poisoning mechanics and testing.
 - **[SilentRetrieval](https://arxiv.org/abs/2605.28074)** — Semantically-preserving RAG corpus poisoning that survives fluency/perplexity screening — retrieval hijack with one poisoned doc per query; transfers to unseen retrievers (ColBERT + commercial embeddings).
 - **[PIDP-Attack](https://arxiv.org/abs/2603.25164)** — Compound RAG attack: inference-time prompt injection + poisoned passages together, without knowing the exact query. Beats PoisonedRAG by 4–16 points across 8 LLMs.
@@ -305,21 +351,32 @@ RAG is the enterprise default — and its knowledge base is an injection sink.
 
 ## 🧪 Adversarial ML (classic model attacks)
 
-Evasion, poisoning, extraction, inversion — the pre-LLM foundations that still bite.
+Evasion and poisoning — the pre-LLM foundations that still bite. Extraction, inversion, and membership inference are the next section.
 
 - **[Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox)** — Most complete adversarial ML library: evasion, poisoning, extraction, inference.
-- **[Counterfit (Microsoft)](https://github.com/Azure/counterfit)** — CLI to orchestrate attacks against ML models; wraps ART/TextAttack.
+- **[Counterfit (Microsoft)](https://github.com/Azure/counterfit)** — CLI to orchestrate attacks against ML models; wraps ART/TextAttack. Archived July 2025.
 - **[TextAttack](https://github.com/QData/TextAttack)** — NLP adversarial attacks, augmentation, adversarial training.
 - **[Foolbox](https://github.com/bethgelab/foolbox)** — Fast evasion attacks (FGSM/PGD/C&W) across PyTorch/TF/JAX.
 - **[CleverHans](https://github.com/cleverhans-lab/cleverhans)** — OG adversarial-examples library; benchmarking attacks and defenses.
 - **[GCG — Universal & Transferable Attacks](https://github.com/llm-attacks/llm-attacks)** — Reference implementation of the transferable adversarial suffix attack + AdvBench.
+
+## 🔓 Model Extraction, Inversion & Membership Inference
+
+API access is enough. Steal a training row, a prompt, or a slice of the weights — then put a number on it.
+
 - **[Extracting Training Data from LLMs (Carlini et al.)](https://arxiv.org/abs/2012.07805)** — The seminal training-data extraction attack — memorization = leakage. Foundation of model privacy attacks.
+- **[Scalable Extraction from Production LMs (Nasr, Carlini et al.)](https://arxiv.org/abs/2311.17035)** — Training data, including PII, pulled out of production ChatGPT. The extraction result you cite when a client says "the API doesn't leak."
+- **[Stealing Part of a Production Language Model](https://arxiv.org/abs/2403.06634)** — Recover a production model's embedding projection layer through API queries. Model theft without the weight file.
 - **[vec2text — Language Model Inversion](https://github.com/jxmorris12/vec2text)** — Reconstruct input text from embeddings. Invert the model; leak what it saw.
+- **[Membership Inference (Shokri et al.)](https://arxiv.org/abs/1610.05820)** — The attack that defined the class: decide whether a point was in the training set from the model's outputs.
+- **[LiRA — Membership Inference From First Principles](https://arxiv.org/abs/2112.03570)** — Carlini et al.'s likelihood-ratio test. The method later papers are measured against; calibrated, and it works on harder targets.
+- **[Privacy Meter](https://github.com/privacytrustlab/ml_privacy_meter)** — Open-source library for running membership-inference audits. Use it when the question is whether a row trained the model.
 
 ## ☠️ Data Poisoning & Backdoors
 
 Attack the model before it's a model. Training-time is the highest-leverage, lowest-noise vector.
 
+- **[Sleeper Agents (Anthropic)](https://arxiv.org/abs/2401.05566)** — Models trained to look aligned, then drop the act on a trigger — and the behavior survives safety training. Not the same thing as runtime memory poisoning.
 - **[BackdoorBench](https://github.com/SCLBD/BackdoorBench)** — Comprehensive backdoor-learning benchmark: attacks + defenses, 8,000+ trials.
 - **[TrojanZoo](https://github.com/ain-soph/trojanzoo)** — Unified platform for evaluating neural backdoor attacks/defenses end-to-end.
 - **[TrojAI (NIST)](https://github.com/usnistgov/trojai-literature)** — NIST's Trojan-in-AI program + curated literature.
@@ -338,10 +395,11 @@ Malicious weights, poisoned pickles, and the guardrails you'll be measured again
 - **[ModelScan (Protect AI)](https://github.com/protectai/modelscan)** — Scans models across 35+ formats for serialization attacks & code injection before load.
 - **[picklescan](https://github.com/mmaitre314/picklescan)** — Detects malicious pickles; used across the HF/PyPI ecosystem.
 - **[Fickling (Trail of Bits)](https://github.com/trailofbits/fickling)** — Decompile/analyze/inject Python pickles; craft and detect malicious model files.
+- **[Sleepy Pickle (Trail of Bits)](https://blog.trailofbits.com/2024/06/11/exploiting-ml-models-with-pickle-file-attacks-part-1/)** — Built on Fickling. A malicious pickle patches weights or hooks model methods at load, so the model itself is the payload, not only the machine that unpickled it.
 - **[NeMo Guardrails (NVIDIA)](https://github.com/NVIDIA/NeMo-Guardrails)** — *Bypass target.* Programmable guardrails. Know it to beat it.
-- **[LLM Guard (Protect AI)](https://github.com/protectai/llm-guard)** — *Bypass target.* Input/output scanners (injection, PII, toxicity).
-- **[Rebuff](https://github.com/protectai/rebuff)** — *Bypass target.* Multi-layer prompt-injection detector.
-- **[Vigil](https://github.com/deadbits/vigil-llm)** — *Bypass target.* Injection/jailbreak detection scanners.
+- **[LLM Guard (Protect AI)](https://github.com/protectai/llm-guard)** — *Bypass target.* Input/output scanners (injection, PII, toxicity). Archived July 2026.
+- **[Rebuff](https://github.com/protectai/rebuff)** — *Bypass target.* Multi-layer prompt-injection detector. Archived August 2024.
+- **[Vigil](https://github.com/deadbits/vigil-llm)** — *Bypass target.* Injection/jailbreak detection scanners. Quiet since 2024.
 - **[Guardrails AI](https://github.com/guardrails-ai/guardrails)** — *Bypass target.* Composable validators (schema, regex, PII, toxicity) with re-ask loops.
 - **[Anthropic Constitutional Classifiers](https://www.anthropic.com/news/constitutional-classifiers)** — *Bypass target.* Rule-based alignment classifiers (Anthropic's jailbreak defense). Study the approach to route around it.
 - **[Meta Prompt Guard 86M](https://huggingface.co/meta-llama/Prompt-Guard-86M)** — *Bypass target.* Small classifier for detecting injection/jailbreak inputs. Fingerprint it, then evade.
@@ -357,11 +415,10 @@ Hands-on reps. Where you actually build the skill.
 - **[PortSwigger — Web LLM Attacks](https://portswigger.net/web-security/llm-attacks)** — Free labs: API abuse, excessive agency, indirect injection, insecure output handling.
 - **[Prompt Airlines (Wiz)](https://promptairlines.com/)** — 5-stage CTF: manipulate an airline chatbot for a free ticket.
 - **[Doublespeak (Forces Unseen)](https://doublespeak.chat/)** — Text game on LLM sandboxing: extract the bot's hidden name.
-- **[Arcanum AI Security Lab Hub](https://arcanum-sec.github.io/ai-sec-resources/)** — Jason Haddix's directory: 23 labs, competitions, bounties, tools.
+- **[Arcanum AI Security Lab Hub](https://arcanum-sec.github.io/ai-sec-resources/)** — Jason Haddix's directory: 71 labs, plus competitions, bounties, tools, and taxonomies.
 - **[AIGoat — vulnerable LLM playground](https://github.com/AISecurityConsortium/AIGoat)** — Vulnerable AI e-commerce app covering the full OWASP LLM Top 10. Runs locally.
 - **[ai-goat (dhammon)](https://github.com/dhammon/ai-goat)** — Local vulnerable-LLM CTF. No signups, no cloud fees.
 - **[OWASP Vulnerable Web Apps Directory](https://vwad.owasp.org/)** — Registry of legal vulnerable targets — now indexes AI/LLM apps.
-- **[RedTeam Arena](https://redarena.ai/)** — Live, competitive jailbreak arena — speed-run prompts against models on a public leaderboard.
 - **[LLM Vulnerable Recruitment App (Reversec)](https://github.com/ReversecLabs/llm-vulnerable-recruitment-app)** — Vulnerable hiring assistant — practice injection/data-exfil in a realistic business app.
 - **[Microsoft AI Red Teaming Playground Labs](https://github.com/microsoft/AI-Red-Teaming-Playground-Labs)** — Official MS labs from the Black Hat "AI Red Teaming in Practice" course; several automated with PyRIT notebooks. Infra included.
 - **[Folly](https://github.com/user1342/Folly)** — Open-source prompt-injection & jailbreak playground for hands-on experimentation.
@@ -374,7 +431,6 @@ Hands-on reps. Where you actually build the skill.
 - **[LLMail-Inject (Microsoft)](https://microsoft.github.io/llmail-inject)** — Adaptive prompt-injection challenge: sneak instructions past defenses in a simulated LLM email client. Real evasion, real dataset.
 - **[The Great Escape (Pangea)](https://escape.pangea.cloud)** — Multi-room LLM prompt-injection escape challenge with prize pools — jailbreak your way out room by room.
 - **[Immersive Labs — Prompt Injection](https://prompting.ai.immersivelabs.com)** — The classic escalating challenge: 10 levels of tricking a bot into leaking a password. Widely-used intro.
-- **[MCP CTF](https://www.mcpctf.io)** — Capture-the-flag built around Model Context Protocol exploitation — tool poisoning, injection, and agent abuse in a hosted lab.
 - **[Invariant Agent CTF (Challenge 24)](https://invariantlabs.ai/play-ctf-challenge-24)** — Hosted agent-security CTF from the MCP-security crew — practice injection + tool abuse on a real tool-using agent.
 
 ## 📊 Benchmarks & Datasets
@@ -387,8 +443,10 @@ Standardized attacks and behaviors — for measuring, comparing, and building yo
 - **[Purple Llama / CyberSecEval (Meta)](https://github.com/meta-llama/PurpleLlama)** — Security & safety evals + Llama Guard.
 - **[In-The-Wild Jailbreak Prompts (verazuo)](https://github.com/verazuo/jailbreak_llms)** — CCS'24 dataset: 15,140 real prompts (1,405 jailbreaks). Gold corpus.
 - **[TrustAIRLab Jailbreak Prompts (HF)](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts)** — Same dataset, HF-ready, with ForbiddenQuestionSet.
-- **[BIPIA (Microsoft)](https://github.com/microsoft/BIPIA)** — Benchmark for indirect prompt-injection attacks & defenses. Measure your indirect-injection coverage.
+- **[BIPIA (Microsoft)](https://github.com/microsoft/BIPIA)** — Benchmark for indirect prompt-injection attacks and defenses. Archived April 2024; still the classic indirect-injection set.
 - **[jailbreak-evaluation](https://github.com/controllability/jailbreak-evaluation)** — Python package to score jailbreak success rigorously. Stop eyeballing ASR.
+- **[StrongREJECT](https://arxiv.org/abs/2402.10260)** — Rubric that refuses to count an empty or off-topic answer as a jailbreak. Use it or your attack-success rate is fiction.
+- **[InjecAgent](https://github.com/uiuc-kang-lab/InjecAgent)** — 1,054 indirect-injection cases against tool-using agents (17 user tools, 62 attacker tools). The standard agent IPI benchmark.
 - **[DeepRed — Partial-Credit CTF Eval](https://arxiv.org/abs/2604.19354)** — LLM agents in isolated Kali+target VMs with checkpoint scoring; best model only 35% avg checkpoint completion. Realistic offensive-agent benchmark.
 - **[CTFusion](https://arxiv.org/abs/2605.11504)** — Evaluates agents on LIVE CTFs to kill benchmark contamination; live solve ~5–7% vs inflated static scores. Leakage-resistant agent eval.
 - **[WASP](https://arxiv.org/abs/2504.18575)** — Benchmarks web-agent security against prompt injection (Operator, Claude Computer Use): agents execute the injected instruction 16–86% of the time. Measures steerability under attack.
@@ -406,8 +464,10 @@ Turn skill into reputation and income.
 - **[Gray Swan Arena](https://www.grayswan.ai/)** — Paid jailbreak/agent competitions — and a talent funnel to top labs.
 - **[AI Vulnerability Database (AVID)](https://avidml.org/)** — Open knowledge base of AI/ML failure modes & vulns.
 - **[AI Incident Database](https://incidentdatabase.ai/)** — Real-world AI harm/incident reports; recon for impact narratives.
-
-> Also worth programs at OpenAI, Anthropic, Google, Microsoft, and xAI/Grok — most now scope AI-specific findings.
+- **[OpenAI Safety Bug Bounty](https://openai.com/index/safety-bug-bounty/)** — 2026 program for agent hijack and data exfil (including MCP), proprietary-info exposure, and account integrity. A jailbreak with no safety impact is out of scope.
+- **[Anthropic Model Safety Bug Bounty](https://support.claude.com/en/articles/12119250-model-safety-bug-bounty-program)** — HackerOne program for universal jailbreaks that beat Constitutional Classifiers on deployed ASL-3 systems. One-off prompts are not the target.
+- **[Microsoft Copilot Bounty](https://www.microsoft.com/en-us/msrc/bounty-ai)** — MSRC program for Copilot and AI/ML issues, $100–$30,000. Submit as "Copilot, AI+ML, and LLMs" and include the conversation id from `/id`.
+- **[xAI / Grok on HackerOne](https://hackerone.com/x)** — Product vulnerabilities in Grok and xAI. Prompt injection and jailbreaks are not this bounty; those go to safety@x.ai.
 
 ## 📖 Awesome Lists & Curations
 
@@ -422,7 +482,6 @@ Go deep. Where the next technique comes from.
 - **[awesome-ai-security (ottosulin)](https://github.com/ottosulin/awesome-ai-security)** — General AI security reading list.
 - **[LLM Security Guide (requie)](https://github.com/requie/LLMSecurityGuide)** — OWASP GenAI-mapped reference.
 - **[awesome-cybersecurity-agentic-ai](https://github.com/raphabot/awesome-cybersecurity-agentic-ai)** — Curated agentic-AI security resources.
-- **[Awesome GPT Super Prompting](https://github.com/CyberAlbSecOP/Awesome_GPT_Super_Prompting)** — Jailbreaks, prompt leaks, injection, super prompts, adversarial ML — a dense prompt-hacking corpus.
 - **[Awesome-LLM-Fingerprinting](https://github.com/shaoshuo-ss/Awesome-LLM-Fingerprinting)** — Paper list for LLM fingerprinting/copyright auditing — the recon-side reading.
 - **[awesome-llm-security (corca-ai)](https://github.com/corca-ai/awesome-llm-security)** — One of the most-referenced LLM security lists — tools, papers, articles across attack & defense.
 - **[Awesome-LM-SSP](https://github.com/ThuCCSLab/Awesome-LM-SSP)** — Comprehensive LM Safety/Security/Privacy reading list from Tsinghua CCSLab.
@@ -489,6 +548,13 @@ Stay current. The field moves weekly.
 - **[CAMLIS](https://www.camlis.org/)** — Conference on Applied ML in Information Security. Practitioner-focused, red-team heavy.
 - **[IEEE SaTML](https://satml.org/)** — Secure and Trustworthy ML — top academic venue for attacks/defenses.
 - **[r/ChatGPTJailbreak](https://www.reddit.com/r/ChatGPTJailbreak/)** — The public jailbreak lab — fresh working jailbreaks and techniques daily.
+
+## 🎤 Talks
+
+Watch the operators. A good demo beats another survey.
+
+- **[Indirect Prompt Injections in the Wild (Johann Rehberger)](https://www.youtube.com/watch?v=ADHAokjniE4)** — The briefing that made indirect injection concrete: real apps, real exfil, and what actually mitigates. Start here if you have one hour.
+- **[SpAIware & More (Black Hat)](https://blackhat.com/html/webcast/06102025.html)** — Rehberger, June 2025. Tool abuse, memory persistence, and ASCII smuggling against Copilot, Gemini, Claude, and GitHub Copilot Chat.
 
 ## 📰 Newsletters & Podcasts
 
