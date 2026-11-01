@@ -313,6 +313,7 @@ The 2026 frontier. Don't jailbreak the model — poison its persistent state, th
 - **[MemMorph](https://arxiv.org/abs/2605.26154)** — Tool hijacking via memory poisoning: benign-looking records make the agent "infer" the attacker's preferred tool — up to 85.9% from 3 injected records.
 - **[Visual Inception](https://arxiv.org/abs/2604.16966)** — Multimodal memory poisoning: user-uploaded images with semantic triggers steer an agentic recommender's later planning (~85% goal-hit).
 - **[MPBench — Memory Poisoning Benchmark](https://arxiv.org/abs/2606.04329)** — Systematic study of how untrusted input becomes trusted memory: 4 memory-write channels, 9 structural weaknesses. The map for the memory-poisoning attack class.
+- **[Memory Poison Lab](https://github.com/RishabhPande/memory-poison-lab)** — Hands-on range for this attack class: four scripted memory-poisoning scenarios (direct injection, summary laundering, laundered import, repetition) against a defended agent, with repair and a live interactive demo. Open challenge: ship a reproducible failing case as a new scenario.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
 
