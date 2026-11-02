@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
-  <a href="#contents"><img src="https://img.shields.io/badge/resources-364-b91c1c?style=flat-square" alt="364 resources"></a>
+  <a href="#contents"><img src="https://img.shields.io/badge/resources-375-b91c1c?style=flat-square" alt="375 resources"></a>
   <a href="#contents"><img src="https://img.shields.io/badge/categories-32-8250df?style=flat-square" alt="32 categories"></a>
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/stargazers"><img src="https://img.shields.io/github/stars/BerSecHub/awesome-ai-red-team?style=flat-square&logo=github" alt="Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/BerSecHub/awesome-ai-red-team?style=flat-square" alt="License"></a>
@@ -18,7 +18,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml"><img src="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml/badge.svg" alt="Link check"></a>
 </p>
 
-**364 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**375 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 ⭐ marks the entry to open first in that category.
 
@@ -91,7 +91,7 @@ One place to remember which resource carries the technique. The link goes to the
 | Direct jailbreak | Crescendo, PAIR, Many-shot | [Jailbreak methods](#-jailbreak-frameworks--methods) |
 | Indirect injection | EchoLeak, Greshake | [Prompt injection](#-prompt-injection--jailbreaks) |
 | Obfuscation and smuggling | Parseltongue, TokenBreak | [Obfuscation](#-payload-obfuscation--token-smuggling) |
-| Tool poisoning | Invariant's disclosure, MCPTox, Damn Vulnerable MCP | [Agentic and MCP](#-agentic--mcp-security) |
+| Tool poisoning | Invariant's disclosure, MCPTox, Log-To-Leak, Damn Vulnerable MCP | [Agentic and MCP](#-agentic--mcp-security) |
 | MCP rug pull and client RCE | MCPoison, CurXecute, mcp-remote, MCP Inspector | [Coding assistants](#️-coding-assistant--agent-attacks) · [Agentic and MCP](#-agentic--mcp-security) |
 | Agent-to-agent | A2ABreak | [Agentic and MCP](#-agentic--mcp-security) |
 | Computer-use and browser agents | ZombAIs, pop-up attack, RedTeamCUA | [Computer-use](#computer-use-browser-agents) |
@@ -116,10 +116,11 @@ Walk this on any authorized agent that can call tools. A refusal on a naked prom
 - [ ] Before you connect a second server, ask what it can make the first server do. The WhatsApp MCP writeup is tool shadowing.
 - [ ] Name the flow before you call it a finding: untrusted input, a private-data tool, and a sink. The GitHub MCP post is the shape. The lethal trifecta is the rule.
 - [ ] Check whether model output can write `mcp.json` or start a new server. CurXecute is that chain.
-- [ ] Version-check mcp-remote (CVE-2025-6514, fixed in 0.1.16) and MCP Inspector (CVE-2025-49596, fixed in 0.14.1).
+- [ ] Version-check mcp-remote (CVE-2025-6514, fixed in 0.1.16) and MCP Inspector. CVE-2025-49596 was fixed in 0.14.1; the 2.x line stayed exposed through 2.11.0, and the 21 Oct 2026 OAuth and proxy bugs are fixed in 1.0.3 (1.x) and 2.12.0 (2.x).
+- [ ] If the client is the official MCP SDK or FastMCP, bind OAuth to the issuer. TypeScript SDK below 1.31.0, and FastMCP below 4.1.2, will send stored credentials to an authorization server the MCP server names.
 - [ ] Write down the OAuth scopes. A full mailbox or repo scope is the privilege the injection inherits.
 - [ ] If agents delegate to agents, test A2A the way A2ABreak does: unattested Agent Cards, context-id injection, credentials forwarded across hops.
-- [ ] Read `SKILL.md`, helper files, `.cursorrules`, and `copilot-instructions.md`. Rules File Backdoor and SkillJect live on this surface.
+- [ ] Read `SKILL.md`, helper files, `.cursorrules`, and `copilot-instructions.md`. Rules File Backdoor and SkillJect live on this surface. Scan the bundle with SkillSpector before you trust it.
 - [ ] Ask what the agent will still believe next session. A memory write from untrusted content is the persistence step.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -284,7 +285,14 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[OWASP MCP Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/MCP_Security_Cheat_Sheet.html)** — Short MCP review: schema integrity, rug pulls, shadowing, confused deputy, over-scoped tokens. Walk it on every server you connect.
 - **[SlowMist MCP Security Checklist](https://github.com/slowmist/MCP-Security-Checklist)** — Longer MCP audit checklist. Use it when the OWASP sheet is too thin for a full server review.
 - **[mcp-remote command injection (JFrog)](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** — CVE-2025-6514. mcp-remote 0.0.5–0.1.15 runs a command from an untrusted MCP authorization URL. Fixed in 0.1.16. Check the version before a remote proxy is in scope.
-- **[MCP Inspector RCE (Tenable)](https://www.tenable.com/blog/how-tenable-research-discovered-a-critical-remote-code-execution-vulnerability-on-anthropic)** — CVE-2025-49596. Inspector before 0.14.1 did not authenticate the browser UI to the local proxy, so a malicious site could launch stdio commands.
+- **[MCP Inspector RCE (Tenable)](https://www.tenable.com/blog/how-tenable-research-discovered-a-critical-remote-code-execution-vulnerability-on-anthropic)** — CVE-2025-49596. Inspector before 0.14.1 did not authenticate the browser UI to the local proxy, so a malicious site could launch stdio commands. The 2.x line shipped an incomplete fix through 2.11.0, patched in 2.12.0.
+- **[MCP Inspector — October 2026 RCE batch](https://github.com/modelcontextprotocol/inspector/security/advisories/GHSA-4fc4-wcmh-4g86)** — 21 Oct 2026. An OAuth callback and a stolen proxy token both become local command execution (GHSA-4fc4-wcmh-4g86 and GHSA-6x67-4w4w-9f3w, CVSS 9.6), fixed in 1.0.3. On 2.x, authorization-URL injection is fixed in 2.12.0. The 0.14.1 upgrade does not cover this batch.
+- **[MCP tool arguments reach the shell](https://testedmcp.com/security/2026-10/#mcp-command-injection)** — Eight community servers, published 27 Oct 2026, pass a model-supplied tool argument into a shell: ai-sdlc, DroidMind, ATXP, sf-mcp, esp-mcp, mcp-ffmpeg, Kali-GPT, and hagent. No advisory names a patched release. A prompt-injected agent is the caller.
+- **[MCP SDK OAuth client credential leak (CVE-2026-104850)](https://github.com/advisories/GHSA-6qxp-vccf-f47h)** — `@modelcontextprotocol/sdk` 1.12.0–1.30.1 and `@modelcontextprotocol/client` 2.0.0–2.1.0 send a stored client secret or refresh token to an authorization server the MCP server picks. Fixed in 1.31.0 and 2.2.0; stored credentials still need a re-bind. FastMCP before 4.1.2 has the same hole (GHSA-vqqp-x5qm-5qp4, 23 Oct 2026).
+- **[MCP Python SDK audience check (CVE-2026-116684)](https://github.com/advisories/GHSA-w4fh-qvv9-3v23)** — `mcp` 1.10.0–1.29.1 and 2.0.0–2.1.1 accept a bearer token minted for a different resource. 1.30.0 and 2.2.0 add the check, and it stays off until `validate_token_resource` is set.
+- **[Log-To-Leak](https://arxiv.org/abs/2610.36108)** — A poisoned tool description asks for one extra call after the legitimate task finishes, and the original task still completes. 62.6–100% ASR across 18 model–server pairs; three defenses left more than 55% ASR on GitHub MCP with GPT-4o.
+- **[Vibe-Trading indirect injection to a shell (CVE-2026-114107)](https://github.com/HKUDS/Vibe-Trading/security/advisories/GHSA-jqmf-mx4f-hfr6)** — HKUDS Vibe-Trading 0.1.0–0.1.6. A document or page the agent reads can drive BashTool and BackgroundRunTool, which run the model command in a shell with no allow-list. `read_url` is also an SSRF. Fixed in 0.1.7.
+- **[Scope-Gap Injection](https://arxiv.org/abs/2610.34777)** — The scan and the LLM judge read the task and the skill; the agent also reads the attachment. Hide the instruction there. In the IJCAI 2026 OpenClaw competition this cleared every stage on 5 of 19 targets, and attachments passed the judge far more often than in-skill payloads (78% vs 23%).
 - **[A2ABreak](https://arxiv.org/abs/2609.10871)** — Eleven breaks in the Agent2Agent spec a compliant peer can exploit: unattested skill claims, context-id injection, credentials lost across delegation hops. The A2A test plan.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -313,6 +321,7 @@ The 2026 frontier. Don't jailbreak the model — poison its persistent state, th
 - **[MemMorph](https://arxiv.org/abs/2605.26154)** — Tool hijacking via memory poisoning: benign-looking records make the agent "infer" the attacker's preferred tool — up to 85.9% from 3 injected records.
 - **[Visual Inception](https://arxiv.org/abs/2604.16966)** — Multimodal memory poisoning: user-uploaded images with semantic triggers steer an agentic recommender's later planning (~85% goal-hit).
 - **[MPBench — Memory Poisoning Benchmark](https://arxiv.org/abs/2606.04329)** — Systematic study of how untrusted input becomes trusted memory: 4 memory-write channels, 9 structural weaknesses. The map for the memory-poisoning attack class.
+- **[Appreciation Teaches Unauthorized Execution](https://arxiv.org/abs/2610.39122)** — A personal agent that learns from "do what the document says" gets worse at indirect injection later. Skill evolution raised ASR by 14–49 points over the unevolved agent. Official code is SaFo-Lab/Evolve-IPI.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
 
@@ -323,6 +332,7 @@ Copilots and coding agents run with your privileges — poison the context, own 
 - **[TrustFall — 1-click RCE (Adversa)](https://adversa.ai/blog/trustfall-coding-agent-security-flaw-rce-claude-cursor-gemini-cli-copilot/)** — Folder-trust abuse: a malicious repo spawns unsandboxed code on Claude Code, Cursor, Gemini CLI, Copilot with one keypress.
 - ⭐ **[IDEsaster (MaccariTA)](https://maccarita.com/posts/idesaster/)** — Prompt injection plus ordinary IDE features: 24 CVEs across Cursor, Copilot, Windsurf, Roo Code, Junie, Cline, and others. A poisoned repo becomes secret theft or RCE.
 - ⭐ **[CurXecute (Aim Labs)](https://www.catonetworks.com/blog/curxecute-rce/)** — CVE-2025-54135. Indirect prompt injection rewrites Cursor's `mcp.json` and the new MCP server starts before the user can reject the edit. Fixed in 1.3.9.
+- **[Tampered Claude Code extension (Cursor marketplace)](https://cursor.com/blog/claude-code-extension-security-notice)** — 29 Oct 2026. `Anthropic.claude-code` 2.1.312 and 2.1.313 on the Cursor marketplace, Windows and macOS, were not Anthropic builds and tried to plant an SSH backdoor whose persistence survives uninstall. Microsoft confirmed those packages were never on the Visual Studio Marketplace or npm.
 - **[MCPoison (Check Point)](https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/)** — CVE-2025-54136. Cursor trusted an MCP entry by name, so a later change to the command ran without a new approval. Fixed in 1.3.
 - **[CamoLeak (Legit Security)](https://www.legitsecurity.com/blog/camoleak-critical-github-copilot-vulnerability-leaks-private-source-code)** — GitHub Copilot Chat leaked private code via remote prompt injection and a CSP bypass through GitHub's own image proxy (CVSS 9.6). GitHub's fix was to stop rendering those images.
 - **["Your AI, My Shell"](https://arxiv.org/abs/2509.22040)** — Systematic study of prompt-injection → shell on agentic AI editors. 85%+ success with adaptive attacks.
@@ -346,6 +356,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[MalSkillBench](https://arxiv.org/abs/2606.07131)** — Runtime-verified benchmark of malicious agent skills; code-injection skills verify more reliably than prompt-injection ones — scanners must reason over intent + code + instructions jointly.
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 66 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
+- **[SkillSpector (NVIDIA)](https://github.com/NVIDIA/SkillSpector)** — Pre-install scanner for Claude Code, Codex, Gemini CLI, and MCP skills. Static patterns plus an optional LLM pass, SARIF out. Apache-2.0. v2.13.2 shipped 28 Oct 2026.
 - **[Skill-Inject](https://arxiv.org/abs/2602.20156)** — Benchmark measuring agent vulnerability to malicious/compromised skill files — the supply-chain surface for Claude Code / Codex-style skill ecosystems.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -372,6 +383,7 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[Ignore Previous Prompt (Perez & Ribeiro)](https://arxiv.org/abs/2211.09527)** — The paper that put "prompt injection" on the map. Foundational reading.
 - **[PALLMs — Payloads for Attacking LLMs](https://github.com/mik0w/pallms)** — Ready-to-fire payload collection for LLM attacks. Grab-and-go.
 - **[Indirect Prompt Injection in the Wild](https://arxiv.org/abs/2604.27202)** — Scanned 1.2B URLs / 24.8M hosts: 15.3K validated indirect injections on 11.7K pages — ~70% hidden in non-rendered HTML (headers, comments, metadata). The threat is already live on the web.
+- **[Where You Inject Matters](https://arxiv.org/abs/2610.38867)** — Same instruction, different surface. On GPT-5.4 a README or TODO was followed 2.6× more often than the same line in a code or data file. Placement is part of the payload.
 - **[Prompt Injection 2.0: Hybrid AI Threats](https://arxiv.org/abs/2507.13169)** — Reframes agent attacks as combinations of prompt injection with XSS, CSRF, tool use, worms, and multi-agent behavior — not isolated prompt tricks.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
