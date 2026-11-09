@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
-  <a href="#contents"><img src="https://img.shields.io/badge/resources-375-b91c1c?style=flat-square" alt="375 resources"></a>
+  <a href="#contents"><img src="https://img.shields.io/badge/resources-382-b91c1c?style=flat-square" alt="382 resources"></a>
   <a href="#contents"><img src="https://img.shields.io/badge/categories-32-8250df?style=flat-square" alt="32 categories"></a>
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/stargazers"><img src="https://img.shields.io/github/stars/BerSecHub/awesome-ai-red-team?style=flat-square&logo=github" alt="Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/BerSecHub/awesome-ai-red-team?style=flat-square" alt="License"></a>
@@ -18,7 +18,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml"><img src="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml/badge.svg" alt="Link check"></a>
 </p>
 
-**375 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**382 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 ⭐ marks the entry to open first in that category.
 
@@ -91,7 +91,7 @@ One place to remember which resource carries the technique. The link goes to the
 | Direct jailbreak | Crescendo, PAIR, Many-shot | [Jailbreak methods](#-jailbreak-frameworks--methods) |
 | Indirect injection | EchoLeak, Greshake | [Prompt injection](#-prompt-injection--jailbreaks) |
 | Obfuscation and smuggling | Parseltongue, TokenBreak | [Obfuscation](#-payload-obfuscation--token-smuggling) |
-| Tool poisoning | Invariant's disclosure, MCPTox, Log-To-Leak, Damn Vulnerable MCP | [Agentic and MCP](#-agentic--mcp-security) |
+| Tool poisoning | Invariant's disclosure, MCPTox, Log-To-Leak, mcpvenom, Damn Vulnerable MCP | [Agentic and MCP](#-agentic--mcp-security) |
 | MCP rug pull and client RCE | MCPoison, CurXecute, mcp-remote, MCP Inspector | [Coding assistants](#️-coding-assistant--agent-attacks) · [Agentic and MCP](#-agentic--mcp-security) |
 | Agent-to-agent | A2ABreak | [Agentic and MCP](#-agentic--mcp-security) |
 | Computer-use and browser agents | ZombAIs, pop-up attack, RedTeamCUA | [Computer-use](#computer-use-browser-agents) |
@@ -110,13 +110,13 @@ One place to remember which resource carries the technique. The link goes to the
 Walk this on any authorized agent that can call tools. A refusal on a naked prompt is not a finding.
 
 - [ ] Inventory every MCP server, skill, and connector the agent can call. Snyk Agent Scan or Cisco MCP Scanner.
-- [ ] Read the whole tool definition: description, input schema, output schema, annotations. A hidden instruction in any of those is tool poisoning. OWASP MCP Cheat Sheet and MCPTox.
-- [ ] Re-read the definition after approval. A changed command or description is a rug pull. MCPoison is that bug on Cursor.
+- [ ] Read the whole tool definition: description, input schema, output schema, annotations. A hidden instruction in any of those is tool poisoning. On the Python SDK before 1.30.0 and 2.2.0, a `$ref` in `outputSchema` is also a client-side fetch. OWASP MCP Cheat Sheet and MCPTox.
+- [ ] Re-read the definition after approval. A changed command or description is a rug pull. MCPoison is that bug on Cursor. ETUDE is the same grant surviving a later change to the tool's code, including on Gemini CLI, Codex CLI, and Claude Code.
 - [ ] Treat tool results, resources, and prompts as untrusted content.
 - [ ] Before you connect a second server, ask what it can make the first server do. The WhatsApp MCP writeup is tool shadowing.
 - [ ] Name the flow before you call it a finding: untrusted input, a private-data tool, and a sink. The GitHub MCP post is the shape. The lethal trifecta is the rule.
 - [ ] Check whether model output can write `mcp.json` or start a new server. CurXecute is that chain.
-- [ ] Version-check mcp-remote (CVE-2025-6514, fixed in 0.1.16) and MCP Inspector. CVE-2025-49596 was fixed in 0.14.1; the 2.x line stayed exposed through 2.11.0, and the 21 Oct 2026 OAuth and proxy bugs are fixed in 1.0.3 (1.x) and 2.12.0 (2.x).
+- [ ] Version-check mcp-remote (CVE-2025-6514, fixed in 0.1.16) and MCP Inspector. CVE-2025-49596 was fixed in 0.14.1; the 2.x line stayed exposed through 2.11.0, and the 21 Oct 2026 OAuth and proxy bugs are fixed in 1.0.3 (1.x) and 2.12.0 (2.x). Inspector 2.12.0 is not the current fix: server.json argument injection and the MCP App frame escape need 2.14.0, and the output-schema ReDoS needs 2.14.0 (2.x) or 1.0.4 (1.x).
 - [ ] If the client is the official MCP SDK or FastMCP, bind OAuth to the issuer. TypeScript SDK below 1.31.0, and FastMCP below 4.1.2, will send stored credentials to an authorization server the MCP server names.
 - [ ] Write down the OAuth scopes. A full mailbox or repo scope is the privilege the injection inherits.
 - [ ] If agents delegate to agents, test A2A the way A2ABreak does: unattested Agent Cards, context-id injection, credentials forwarded across hops.
@@ -282,14 +282,18 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[GitHub MCP private-repo exfil (Invariant Labs)](https://invariantlabs.ai/blog/mcp-github-vulnerability)** — A public issue injects an agent that can read a private repo, and the leak leaves as a public pull request. The toxic-flow pattern.
 - **[WhatsApp MCP tool shadowing (Invariant Labs)](https://invariantlabs.ai/blog/whatsapp-mcp-exploited)** — A second, untrusted MCP server steers the agent into walking WhatsApp history out through the trusted server. Cross-server shadowing.
 - **[MCPTox](https://arxiv.org/abs/2508.14925)** — Tool-description poisoning measured on 45 live MCP servers and 353 real tools. o1-mini followed the poisoned metadata 72.8% of the time. Score an agent with it.
+- **[mcpvenom (Dynatrace Research)](https://github.com/dynatrace-research/mcpvenom)** — 2 Nov 2026. Cross-framework tool-poisoning harness (arXiv 2611.03555, AISec at CCS): 45 scenarios, real tool execution, 12 frameworks × 18 models. 22.9% of 9,720 cells are vulnerable; of those, 12.1% are verified secret exfil and 64.9% only dispatch the call. Nine frameworks sit in a 23–26% band, and none ships an intentional defense.
 - **[OWASP MCP Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/MCP_Security_Cheat_Sheet.html)** — Short MCP review: schema integrity, rug pulls, shadowing, confused deputy, over-scoped tokens. Walk it on every server you connect.
 - **[SlowMist MCP Security Checklist](https://github.com/slowmist/MCP-Security-Checklist)** — Longer MCP audit checklist. Use it when the OWASP sheet is too thin for a full server review.
 - **[mcp-remote command injection (JFrog)](https://jfrog.com/blog/2025-6514-critical-mcp-remote-rce-vulnerability/)** — CVE-2025-6514. mcp-remote 0.0.5–0.1.15 runs a command from an untrusted MCP authorization URL. Fixed in 0.1.16. Check the version before a remote proxy is in scope.
 - **[MCP Inspector RCE (Tenable)](https://www.tenable.com/blog/how-tenable-research-discovered-a-critical-remote-code-execution-vulnerability-on-anthropic)** — CVE-2025-49596. Inspector before 0.14.1 did not authenticate the browser UI to the local proxy, so a malicious site could launch stdio commands. The 2.x line shipped an incomplete fix through 2.11.0, patched in 2.12.0.
-- **[MCP Inspector — October 2026 RCE batch](https://github.com/modelcontextprotocol/inspector/security/advisories/GHSA-4fc4-wcmh-4g86)** — 21 Oct 2026. An OAuth callback and a stolen proxy token both become local command execution (GHSA-4fc4-wcmh-4g86 and GHSA-6x67-4w4w-9f3w, CVSS 9.6), fixed in 1.0.3. On 2.x, authorization-URL injection is fixed in 2.12.0. The 0.14.1 upgrade does not cover this batch.
+- **[MCP Inspector — October 2026 RCE batch](https://github.com/modelcontextprotocol/inspector/security/advisories/GHSA-4fc4-wcmh-4g86)** — 21 Oct 2026. An OAuth callback and a stolen proxy token both become local command execution (GHSA-4fc4-wcmh-4g86 and GHSA-6x67-4w4w-9f3w, CVSS 9.6), fixed in 1.0.3. On 2.x, Windows and WSL authorization-URL injection through the `open` package (GHSA-q978-78c7-phqw, CVE-2026-119025; opencode 1.0.137–1.18.32 has the same bug) is fixed in 2.12.0. The 0.14.1 upgrade does not cover this batch.
+- **[MCP Inspector — November 2026 import bugs](https://github.com/modelcontextprotocol/inspector/security/advisories/GHSA-rwv7-mh2c-ff2p)** — 4 Nov 2026, fixed in 2.14.0. Through 2.13.0, an imported `server.json` splices `runtimeArguments` into `npx`, `uvx`, or `docker` while the UI shows only the package name (GHSA-rwv7-mh2c-ff2p). An MCP App can also navigate its frame and keep the host bridge (GHSA-h9j8-vj8g-v3gg). A 2.12.0 upgrade does not cover this. The output-schema ReDoS (GHSA-2fw8-7jmw-r937) is fixed in the same 2.14.0, and in 1.0.4 on the 1.x line.
 - **[MCP tool arguments reach the shell](https://testedmcp.com/security/2026-10/#mcp-command-injection)** — Eight community servers, published 27 Oct 2026, pass a model-supplied tool argument into a shell: ai-sdlc, DroidMind, ATXP, sf-mcp, esp-mcp, mcp-ffmpeg, Kali-GPT, and hagent. No advisory names a patched release. A prompt-injected agent is the caller.
+- **[AWS Serverless MCP path traversal (CVE-2026-116635)](https://aws.amazon.com/security/security-bulletins/2026-164-aws/)** — 2 Nov 2026. `awslabs.aws-serverless-mcp-server` before 0.2.1. A project name the agent accepts can read JSON outside the deployment-status directory, and can write it where write access is enabled. No workaround.
 - **[MCP SDK OAuth client credential leak (CVE-2026-104850)](https://github.com/advisories/GHSA-6qxp-vccf-f47h)** — `@modelcontextprotocol/sdk` 1.12.0–1.30.1 and `@modelcontextprotocol/client` 2.0.0–2.1.0 send a stored client secret or refresh token to an authorization server the MCP server picks. Fixed in 1.31.0 and 2.2.0; stored credentials still need a re-bind. FastMCP before 4.1.2 has the same hole (GHSA-vqqp-x5qm-5qp4, 23 Oct 2026).
 - **[MCP Python SDK audience check (CVE-2026-116684)](https://github.com/advisories/GHSA-w4fh-qvv9-3v23)** — `mcp` 1.10.0–1.29.1 and 2.0.0–2.1.1 accept a bearer token minted for a different resource. 1.30.0 and 2.2.0 add the check, and it stays off until `validate_token_resource` is set.
+- **[MCP Python SDK outputSchema `$ref` fetch (CVE-2026-116686)](https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-rwrf-2pqf-9j8j)** — `mcp` 1.10.0–1.29.1 and 2.0.0–2.1.1. A tool `outputSchema` `$ref` makes the client fetch that `http`, `https`, or `file` URL on every call, and a quiet target stalls every session. The body is used as a schema and is not sent back. Fixed in 1.30.0 and 2.2.0.
 - **[Log-To-Leak](https://arxiv.org/abs/2610.36108)** — A poisoned tool description asks for one extra call after the legitimate task finishes, and the original task still completes. 62.6–100% ASR across 18 model–server pairs; three defenses left more than 55% ASR on GitHub MCP with GPT-4o.
 - **[Vibe-Trading indirect injection to a shell (CVE-2026-114107)](https://github.com/HKUDS/Vibe-Trading/security/advisories/GHSA-jqmf-mx4f-hfr6)** — HKUDS Vibe-Trading 0.1.0–0.1.6. A document or page the agent reads can drive BashTool and BackgroundRunTool, which run the model command in a shell with no allow-list. `read_url` is also an SSRF. Fixed in 0.1.7.
 - **[Scope-Gap Injection](https://arxiv.org/abs/2610.34777)** — The scan and the LLM judge read the task and the skill; the agent also reads the attachment. Hide the instruction there. In the IJCAI 2026 OpenClaw competition this cleared every stage on 5 of 19 targets, and attachments passed the judge far more often than in-skill payloads (78% vs 23%).
@@ -342,6 +346,7 @@ Copilots and coding agents run with your privileges — poison the context, own 
 - **[AIShellJack — "Attacker's Shell"](https://arxiv.org/abs/2605.25871)** — 314 payloads / 70 MITRE ATT&CK techniques against Cursor & Copilot workflows: 41–84% success. Injection → file access, cred discovery, command exec.
 - **[GitInject](https://arxiv.org/abs/2606.09935)** — Prompt injection in AI-powered GitHub CI/CD pipelines — tests real Actions permission boundaries, runner state, and token exposure, not toy tool calls.
 - **[Are AI-Assisted Dev Tools Immune to Prompt Injection?](https://arxiv.org/abs/2603.21642)** — Empirical tool-poisoning test across Claude Desktop/Code, Cursor, Cline, Continue, Gemini CLI, and Langflow. Spoiler: no.
+- **[Earn-then-Exploit](https://arxiv.org/abs/2611.00725)** — 31 Oct 2026. A site helps a coding agent for real, then the next page crosses a boundary. 71.4% scene-level ASR over 56 setups: 85.7% on Codex (GPT-5.5), 67.9% on ZCode (GLM-5.3-Flash), 60.7% on QwenCode (Qwen3.7-Plus). One-shot injection baselines scored lower. Prior help is part of the payload.
 - **[Month of AI Bugs](https://monthofaibugs.com/)** — Rehberger's index of production computer-use and coding-agent bugs from August 2025. Open it when you want the chains, then the single-CVE writeups.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -357,6 +362,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 66 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
 - **[SkillSpector (NVIDIA)](https://github.com/NVIDIA/SkillSpector)** — Pre-install scanner for Claude Code, Codex, Gemini CLI, and MCP skills. Static patterns plus an optional LLM pass, SARIF out. Apache-2.0. v2.13.2 shipped 28 Oct 2026.
+- **[Tool update gap (ETUDE)](https://arxiv.org/abs/2611.01976)** — 1 Nov 2026. A tool that passed admission keeps its grant after the code changes, and the new code runs outside the context window. 97.6% ASR with 95.9% task completion across seven frameworks, including Gemini CLI, Codex CLI, and Claude Code. An install-time scan does not see the update.
 - **[Skill-Inject](https://arxiv.org/abs/2602.20156)** — Benchmark measuring agent vulnerability to malicious/compromised skill files — the supply-chain surface for Claude Code / Codex-style skill ecosystems.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -445,6 +451,7 @@ Where AI meets your cloud-security edge. SSRF a model endpoint, steal the token,
 - **[ShadowRay (Oligo)](https://www.oligo.security/blog/shadowray-attack-ai-workloads-actively-exploited-in-the-wild)** — In-the-wild campaign against exposed Ray dashboards via disputed CVE-2023-48022. An open Ray port on an AI cluster is shared infrastructure, not a dev convenience.
 - ⭐ **[Probllama — Ollama RCE (Wiz)](https://www.wiz.io/blog/probllama-ollama-vulnerability-cve-2024-37032)** — CVE-2024-37032, unauthenticated remote code execution in Ollama. An exposed Ollama port is a shell.
 - **[LiteLLM MCP command injection (CSA)](https://labs.cloudsecurityalliance.org/research/csa-research-note-litellm-cve-2026-42271-ai-gateway-exploita/)** — CVE-2026-42271: command injection on LiteLLM's MCP test endpoints, chained with Starlette's BadHost auth bypass (CVE-2026-48710) to unauthenticated RCE. Added to CISA KEV in June 2026.
+- **[Langflow OSS unauthenticated RCE (IBM)](https://www.ibm.com/support/pages/security-bulletin-langflow-oss-affected-multiple-vulnerabilities-2)** — 28 Oct 2026. Langflow 1.0.0–1.12.8. Auth bypass (CVE-2026-93680, 9.8) and unauthenticated code execution (CVE-2026-110186, 9.8). IBM names MCP tool enumeration as an unauthenticated RCE path. A low-priv account can also push the Agentic Assistant into OS commands (CVE-2026-110193). Fixed in 1.13.0. No workaround.
 - **[Mind Your Key — LLM API Key Leakage in iOS Apps](https://arxiv.org/abs/2606.12212)** — 282 of 444 LLM-enabled iOS apps leaked exploitable credentials (plaintext keys, unauthenticated proxies, JWTs). The feeder channel for LLMjacking.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -604,7 +611,7 @@ Hands-on reps. Where you actually build the skill.
 Standardized attacks and behaviors — for measuring, comparing, and building your own harness.
 
 - ⭐ **[HarmBench](https://github.com/centerforaisafety/HarmBench)** — Standardized automated red-teaming eval (attacks + defenses), textual and multimodal. Benchmark repo quiet since 2024; the eval is still the reference.
-- **[JailbreakBench](https://github.com/JailbreakBench/jailbreakbench)** — Open robustness benchmark; JBB-Behaviors (200 behaviors), leaderboard. Repo quiet since early 2025; the behavior set is still the reference.
+- **[JailbreakBench](https://github.com/JailbreakBench/jailbreakbench)** — Open robustness benchmark; JBB-Behaviors (200 behaviors), leaderboard. Repo quiet since April 2025; the behavior set is still the reference.
 - **[AgentHarm](https://arxiv.org/abs/2410.09024)** — 110 malicious agent tasks (440 augmented) across 11 harm categories.
 - **[Purple Llama / CyberSecEval (Meta)](https://github.com/meta-llama/PurpleLlama)** — Security & safety evals + Llama Guard.
 - **[In-The-Wild Jailbreak Prompts (verazuo)](https://github.com/verazuo/jailbreak_llms)** — CCS'24 dataset: 15,140 real prompts (1,405 jailbreaks). Gold corpus. Same set on Hugging Face as `TrustAIRLab/in-the-wild-jailbreak-prompts`.
