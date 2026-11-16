@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://awesome.re"><img src="https://awesome.re/badge.svg" alt="Awesome"></a>
-  <a href="#contents"><img src="https://img.shields.io/badge/resources-382-b91c1c?style=flat-square" alt="382 resources"></a>
+  <a href="#contents"><img src="https://img.shields.io/badge/resources-389-b91c1c?style=flat-square" alt="389 resources"></a>
   <a href="#contents"><img src="https://img.shields.io/badge/categories-32-8250df?style=flat-square" alt="32 categories"></a>
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/stargazers"><img src="https://img.shields.io/github/stars/BerSecHub/awesome-ai-red-team?style=flat-square&logo=github" alt="Stars"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/BerSecHub/awesome-ai-red-team?style=flat-square" alt="License"></a>
@@ -18,7 +18,7 @@
   <a href="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml"><img src="https://github.com/BerSecHub/awesome-ai-red-team/actions/workflows/links.yml/badge.svg" alt="Link check"></a>
 </p>
 
-**382 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
+**389 hand-picked resources across 32 categories.** Curated by [Rafael Gacek](https://bersec.me) — offensive-AI / red-team operator. Every link earns its place: best-in-class, current, no SEO filler. Defense shows up only as **bypass targets**.
 
 ⭐ marks the entry to open first in that category.
 
@@ -92,7 +92,7 @@ One place to remember which resource carries the technique. The link goes to the
 | Indirect injection | EchoLeak, Greshake | [Prompt injection](#-prompt-injection--jailbreaks) |
 | Obfuscation and smuggling | Parseltongue, TokenBreak | [Obfuscation](#-payload-obfuscation--token-smuggling) |
 | Tool poisoning | Invariant's disclosure, MCPTox, Log-To-Leak, mcpvenom, Damn Vulnerable MCP | [Agentic and MCP](#-agentic--mcp-security) |
-| MCP rug pull and client RCE | MCPoison, CurXecute, mcp-remote, MCP Inspector | [Coding assistants](#️-coding-assistant--agent-attacks) · [Agentic and MCP](#-agentic--mcp-security) |
+| MCP rug pull and client RCE | MCPoison, CurXecute, mcp-remote, MCP Inspector, mcp-server-git | [Coding assistants](#️-coding-assistant--agent-attacks) · [Agentic and MCP](#-agentic--mcp-security) |
 | Agent-to-agent | A2ABreak | [Agentic and MCP](#-agentic--mcp-security) |
 | Computer-use and browser agents | ZombAIs, pop-up attack, RedTeamCUA | [Computer-use](#computer-use-browser-agents) |
 | RAG poisoning | PoisonedRAG, AgentPoison, Phantom | [RAG](#-rag--vector-db-security) |
@@ -117,6 +117,8 @@ Walk this on any authorized agent that can call tools. A refusal on a naked prom
 - [ ] Name the flow before you call it a finding: untrusted input, a private-data tool, and a sink. The GitHub MCP post is the shape. The lethal trifecta is the rule.
 - [ ] Check whether model output can write `mcp.json` or start a new server. CurXecute is that chain.
 - [ ] Version-check mcp-remote (CVE-2025-6514, fixed in 0.1.16) and MCP Inspector. CVE-2025-49596 was fixed in 0.14.1; the 2.x line stayed exposed through 2.11.0, and the 21 Oct 2026 OAuth and proxy bugs are fixed in 1.0.3 (1.x) and 2.12.0 (2.x). Inspector 2.12.0 is not the current fix: server.json argument injection and the MCP App frame escape need 2.14.0, and the output-schema ReDoS needs 2.14.0 (2.x) or 1.0.4 (1.x).
+- [ ] If the agent reads a repo through the reference `mcp-server-git`, upgrade to 2026.11.11. Before that, a read-only status or diff runs a program named in that repo's git config, and `--repository` on 2026.10.28–2026.11.4 does not confine the checkout.
+- [ ] If the agent calls AWS through `awslabs.aws-api-mcp-server`, 1.5.1 is not current. The operation-name policy bypass is fixed in 1.5.1. The OAuth audience check needs 1.6.0.
 - [ ] If the client is the official MCP SDK or FastMCP, bind OAuth to the issuer. TypeScript SDK below 1.31.0, and FastMCP below 4.1.2, will send stored credentials to an authorization server the MCP server names.
 - [ ] Write down the OAuth scopes. A full mailbox or repo scope is the privilege the injection inherits.
 - [ ] If agents delegate to agents, test A2A the way A2ABreak does: unattested Agent Cards, context-id injection, credentials forwarded across hops.
@@ -291,6 +293,9 @@ Where the 2026 attack surface actually lives: tools, memory, MCP, autonomy.
 - **[MCP Inspector — November 2026 import bugs](https://github.com/modelcontextprotocol/inspector/security/advisories/GHSA-rwv7-mh2c-ff2p)** — 4 Nov 2026, fixed in 2.14.0. Through 2.13.0, an imported `server.json` splices `runtimeArguments` into `npx`, `uvx`, or `docker` while the UI shows only the package name (GHSA-rwv7-mh2c-ff2p). An MCP App can also navigate its frame and keep the host bridge (GHSA-h9j8-vj8g-v3gg). A 2.12.0 upgrade does not cover this. The output-schema ReDoS (GHSA-2fw8-7jmw-r937) is fixed in the same 2.14.0, and in 1.0.4 on the 1.x line.
 - **[MCP tool arguments reach the shell](https://testedmcp.com/security/2026-10/#mcp-command-injection)** — Eight community servers, published 27 Oct 2026, pass a model-supplied tool argument into a shell: ai-sdlc, DroidMind, ATXP, sf-mcp, esp-mcp, mcp-ffmpeg, Kali-GPT, and hagent. No advisory names a patched release. A prompt-injected agent is the caller.
 - **[AWS Serverless MCP path traversal (CVE-2026-116635)](https://aws.amazon.com/security/security-bulletins/2026-164-aws/)** — 2 Nov 2026. `awslabs.aws-serverless-mcp-server` before 0.2.1. A project name the agent accepts can read JSON outside the deployment-status directory, and can write it where write access is enabled. No workaround.
+- **[AWS API MCP policy bypass (CVE-2026-125271)](https://aws.amazon.com/security/security-bulletins/2026-176-aws/)** — 10 Nov 2026. `awslabs.aws-api-mcp-server` 0.2.13–1.5.0. An operation name with consecutive capitals never matched denyList or elicitList, so a policy-denied call still ran. Fixed in 1.5.1. No workaround. Do not stop there: the OAuth audience bypass (CVE-2026-115413, 27 Oct 2026) needs 1.6.0.
+- **[mcp-server-git config execution](https://github.com/modelcontextprotocol/servers/security/advisories/GHSA-6hqx-gqrx-c5r2)** — 11 Nov 2026. Reference `mcp-server-git` before 2026.11.11. A read-only status or diff runs a program named in that repository's git config (GHSA-6hqx-gqrx-c5r2, high). On 2026.10.28 through 2026.11.4, `--repository` still follows alternates and linked worktrees outside the allowed checkout (GHSA-q74p-4wrc-q7w6, 5.3). Both fixed in 2026.11.11. A plain clone does not carry the config; a copied checkout or archive does.
+- **[ContextForge credential swap and identity replay (IBM)](https://www.ibm.com/support/pages/node/7296490)** — 12 Nov 2026. ContextForge MCP Gateway 1.0.0–1.1.0. An authenticated caller can replace the stored upstream credential with `X-Upstream-Authorization` (CVE-2026-110279, 8.1). Identity-propagation signatures are static, and the per-server off switch is ignored (CVE-2026-110278, 7.4). Both fixed in 1.1.1.
 - **[MCP SDK OAuth client credential leak (CVE-2026-104850)](https://github.com/advisories/GHSA-6qxp-vccf-f47h)** — `@modelcontextprotocol/sdk` 1.12.0–1.30.1 and `@modelcontextprotocol/client` 2.0.0–2.1.0 send a stored client secret or refresh token to an authorization server the MCP server picks. Fixed in 1.31.0 and 2.2.0; stored credentials still need a re-bind. FastMCP before 4.1.2 has the same hole (GHSA-vqqp-x5qm-5qp4, 23 Oct 2026).
 - **[MCP Python SDK audience check (CVE-2026-116684)](https://github.com/advisories/GHSA-w4fh-qvv9-3v23)** — `mcp` 1.10.0–1.29.1 and 2.0.0–2.1.1 accept a bearer token minted for a different resource. 1.30.0 and 2.2.0 add the check, and it stays off until `validate_token_resource` is set.
 - **[MCP Python SDK outputSchema `$ref` fetch (CVE-2026-116686)](https://github.com/modelcontextprotocol/python-sdk/security/advisories/GHSA-rwrf-2pqf-9j8j)** — `mcp` 1.10.0–1.29.1 and 2.0.0–2.1.1. A tool `outputSchema` `$ref` makes the client fetch that `http`, `https`, or `file` URL on every call, and a quiet target stalls every session. The body is used as a schema and is not sent back. Fixed in 1.30.0 and 2.2.0.
@@ -362,6 +367,7 @@ Skills and tools are natural-language instructions bundled with executable code 
 - **[awesome-agent-skills-security](https://github.com/LLMSecurity/awesome-agent-skills-security)** — Curated attacks/defenses/benchmarks for agent tool-use & skill ecosystems.
 - **[Agent Audit](https://github.com/HeadyZhang/agent-audit)** — Static scanner for agent code + MCP configs: 66 rules mapped to OWASP Agentic Top 10 (tool poisoning, shadowing, rug pulls, unsafe inputs, secrets) → SARIF / GitHub code-scanning.
 - **[SkillSpector (NVIDIA)](https://github.com/NVIDIA/SkillSpector)** — Pre-install scanner for Claude Code, Codex, Gemini CLI, and MCP skills. Static patterns plus an optional LLM pass, SARIF out. Apache-2.0. v2.13.2 shipped 28 Oct 2026.
+- **[Haiou prompt adware (Check Point)](https://research.checkpoint.com/2026/free-the-model-sell-the-gateway-prompt-adware-hidden-in-jailbreak-bundles/)** — 3 Nov 2026. A Codex jailbreak bundle installs skills and writes the author's gateway ads into later agent replies. Check Point found that bundle on a Cobalt Strike operator's server, next to VulnClaw and Ladon. The jailbreak is the lure. The persistent instruction edit is the supply-chain bug.
 - **[Tool update gap (ETUDE)](https://arxiv.org/abs/2611.01976)** — 1 Nov 2026. A tool that passed admission keeps its grant after the code changes, and the new code runs outside the context window. 97.6% ASR with 95.9% task completion across seven frameworks, including Gemini CLI, Codex CLI, and Claude Code. An install-time scan does not see the update.
 - **[Skill-Inject](https://arxiv.org/abs/2602.20156)** — Benchmark measuring agent vulnerability to malicious/compromised skill files — the supply-chain surface for Claude Code / Codex-style skill ecosystems.
 
@@ -379,6 +385,7 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[greshake/llm-security](https://github.com/greshake/llm-security)** — "Not what you've signed up for" — the seminal indirect prompt-injection PoCs.
 - **[Indirect Prompt Injection (Greshake et al.)](https://arxiv.org/abs/2302.12173)** — The paper behind that PoC. Indirect injection against real LLM-integrated apps, which is the pattern every copilot copied.
 - ⭐ **[EchoLeak (Aim Labs / Cato)](https://www.catonetworks.com/blog/breaking-down-echoleak/)** — Zero-click Microsoft 365 Copilot chain, CVE-2025-32711: one email, RAG retrieval across the tenant, markdown-image exfil. The production indirect-injection report.
+- **[ChatGPT share-link account takeover (Parameter)](https://www.parameter.ai/labs/we-found-a-gap-at-openai)** — 28 Oct 2026, still the writeup operators passed around this week. A public ChatGPT share ran JavaScript as the signed-in viewer and could read a private conversation. OpenAI fixed it on 26 Oct 2026, rated it P1, and paid $5,000. Opening the share was the click.
 - **[Learn Prompting — Prompt Hacking](https://learnprompting.org/docs/prompt_hacking/introduction)** — Structured intro to injection/jailbreak/leaking.
 - **[Arcanum Prompt Injection Taxonomy](https://github.com/Arcanum-Sec/arc_pi_taxonomy)** — Jason Haddix's structured classification of injection attack types (the `arc_pi_taxonomy` repo).
 - **[PIPE — Prompt Injection Primer for Engineers](https://github.com/jthack/PIPE)** — Compact, practical primer on prompt injection for builders and red teamers. Repo quiet since 2023.
@@ -390,6 +397,7 @@ The core offensive discipline. Read the theory, steal the payloads.
 - **[PALLMs — Payloads for Attacking LLMs](https://github.com/mik0w/pallms)** — Ready-to-fire payload collection for LLM attacks. Grab-and-go.
 - **[Indirect Prompt Injection in the Wild](https://arxiv.org/abs/2604.27202)** — Scanned 1.2B URLs / 24.8M hosts: 15.3K validated indirect injections on 11.7K pages — ~70% hidden in non-rendered HTML (headers, comments, metadata). The threat is already live on the web.
 - **[Where You Inject Matters](https://arxiv.org/abs/2610.38867)** — Same instruction, different surface. On GPT-5.4 a README or TODO was followed 2.6× more often than the same line in a code or data file. Placement is part of the payload.
+- **[Agentic Optimizer (Google DeepMind)](https://arxiv.org/abs/2611.11861)** — 9 Nov 2026. A swarm of agents writes the tool-output injection. The goal is an unrelated tool call, not an obviously harmful one. Against a Gemini 4 Argon swarm, with the defender's chain-of-thought hidden, Gemini 4 Argon — their strongest defender — resisted 66% of scenarios at full budget and 87% at a 150-query cap. A GraySwan transfer score near zero is a different test.
 - **[Prompt Injection 2.0: Hybrid AI Threats](https://arxiv.org/abs/2507.13169)** — Reframes agent attacks as combinations of prompt injection with XSS, CSRF, tool use, worms, and multi-agent behavior — not isolated prompt tricks.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
@@ -406,7 +414,7 @@ Attack-technique implementations — when a scanner isn't enough and you need th
 - **[EasyJailbreak](https://github.com/EasyJailbreak/EasyJailbreak)** — Unified framework: 11 classic attacks (AutoDAN, PAIR, GPTFuzz, DeepInception…) via Selector/Mutator/Constraint/Evaluator.
 - **[GPTFuzz](https://github.com/hubertyoo/GPTFuzz)** — AFL-inspired black-box jailbreak fuzzer; auto-generates jailbreak templates from seeds.
 - **[Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection)** — USENIX Sec'24 benchmark: 5 injection attacks × 10 defenses × 10 LLMs × 7 tasks.
-- **[HouYi](https://github.com/LLMSecurity/HouYi)** — Automated black-box prompt-injection framework for LLM-integrated apps.
+- **[HouYi](https://github.com/LLMSecurity/HouYi)** — Automated black-box prompt-injection framework for LLM-integrated apps. Repo quiet since September 2024.
 - **[JailbreakZoo](https://github.com/Allen-piexl/JailbreakZoo)** — Catalog of jailbreak methods and papers for LLMs and multimodal models. Repo quiet since 2024.
 - **[ArtPrompt (ASCII-art jailbreak)](https://github.com/uw-nsl/ArtPrompt)** — ACL'24 — encode blocked words as ASCII art to slip past alignment. Cheap, black-box.
 - **[AutoDAN-Turbo](https://github.com/SaFo-Lab/AutoDAN-Turbo)** — ICLR'25 — lifelong agent that self-discovers jailbreak strategies from scratch.
@@ -537,7 +545,7 @@ API access is enough. Steal a training row, a prompt, or a slice of the weights 
 - **[vec2text — Language Model Inversion](https://github.com/vec2text/vec2text)** — Reconstruct input text from embeddings. Invert the model; leak what it saw.
 - **[Membership Inference (Shokri et al.)](https://arxiv.org/abs/1610.05820)** — The attack that defined the class: decide whether a point was in the training set from the model's outputs.
 - **[LiRA — Membership Inference From First Principles](https://arxiv.org/abs/2112.03570)** — Carlini et al.'s likelihood-ratio test. The method later papers are measured against; calibrated, and it works on harder targets.
-- **[Privacy Meter](https://github.com/privacytrustlab/ml_privacy_meter)** — Open-source library for running membership-inference audits. Use it when the question is whether a row trained the model. Repo quiet since early 2025.
+- **[Privacy Meter](https://github.com/privacytrustlab/ml_privacy_meter)** — Open-source library for running membership-inference audits. Use it when the question is whether a row trained the model. Repo quiet since April 2025.
 
 <p align="right"><a href="#top">↑ back to top</a></p>
 
@@ -599,6 +607,7 @@ Hands-on reps. Where you actually build the skill.
 - **[MyLLM Bank (WithSecure)](https://myllmbank.com/)** — Multi-LLM banking CTF — learn real-world prompt-injection chains.
 - **[MyLLM Doctor (WithSecure)](https://myllmdoc.com/)** — Medical chatbot challenge — multi-stage injection and policy evasion.
 - **[HackMerlin](https://hackmerlin.io)** — Wizard-themed prompt-injection game — coax escalating passwords out of Merlin across levels. Slick, addictive on-ramp.
+- **[PwnGPT (Christo Goosen)](https://github.com/c-goosen/ai-prompt-ctf)** — Local 16-level prompt-injection CTF, tree updated 14 Nov 2026. Decision-model guards, poisoned tool descriptions, planted memories, then all of them at once. `make run` on a machine you control. The default compose is not for a public host.
 - **[Tensor Trust](https://tensortrust.ai)** — Attack-and-defend prompt-injection game (UC Berkeley) — build a defense, break everyone else's. Ships a large public human attack dataset.
 - **[LLMail-Inject (Microsoft)](https://microsoft.github.io/llmail-inject)** — Adaptive prompt-injection challenge: sneak instructions past defenses in a simulated LLM email client. Real evasion, real dataset.
 - **[The Great Escape (Pangea)](https://escape.pangea.cloud)** — Multi-room LLM prompt-injection escape challenge with prize pools — jailbreak your way out room by room.
