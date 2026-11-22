@@ -578,6 +578,7 @@ Malicious weights, poisoned pickles, and the guardrails you'll be measured again
 - **[PickleScan zero-days (JFrog)](https://jfrog.com/blog/unveiling-3-zero-day-vulnerabilities-in-picklescan/)** — Three PickleScan bypasses from December 2025, fixed in 0.0.31, including a file-extension trick (CVE-2025-10155). A green scan on an old picklescan is not a result.
 - **[Safetensors conversion hijack (HiddenLayer)](https://www.hiddenlayer.com/research/silent-sabotage)** — A model uploaded for Safetensors conversion hijacked Hugging Face's conversion bot, which could then open pull requests on other repos. The format stayed data-only. The bot was the bug.
 - **[Hugging Face pickle scanning](https://huggingface.co/docs/hub/en/security-pickle)** — What the Hub's pickle scanner claims to detect. Read it beside the bypasses above before you treat a "safe" badge as a finding.
+- **[HOL Guard](https://hol.org/guard)** — *Bypass target.* Checks supported agent shell, file, package and MCP tool calls; test the blind spots between agent hooks and actions.
 - **[NeMo Guardrails (NVIDIA)](https://github.com/NVIDIA-NeMo/Guardrails)** — *Bypass target.* Programmable guardrails. Know it to beat it.
 - **[LLM Guard (Protect AI)](https://github.com/protectai/llm-guard)** — *Bypass target.* Input/output scanners (injection, PII, toxicity). Archived July 2026.
 - **[Rebuff](https://github.com/protectai/rebuff)** — *Bypass target.* Multi-layer prompt-injection detector. Archived August 2024.
